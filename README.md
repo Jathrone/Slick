@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -23,7 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-=======
 # Slick
 Slack clone-- "Searchable Log of Infinite Conversation and Knowledge"
->>>>>>> 1ada62fc7cfab55da49822001ca593a0433ac79c
