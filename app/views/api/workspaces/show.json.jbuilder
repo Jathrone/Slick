@@ -1,3 +1,1 @@
-json.workspace do 
-    json.partial! "workspace", workspace: @workspace
-end
+json.partial! "workspace", workspace: @workspace
