@@ -8,8 +8,14 @@ class ApplicationController < ActionController::Base
     end
 
     def all_current_users
-        #TODO consider local variable @all_current_users
-        User.where(session_token: session[:session_table])
+        all_current_users = User.where(session_token: session[:session_table])
+        active_session_tokens = all_current_users.map do |user| 
+            user.session_token
+        end 
+        session[:session_table].delete_if do |session_token|
+            !active_session_tokens.include?(session_token)
+        end
+        return all_current_users
     end
 
     def logged_in? 
@@ -26,14 +32,24 @@ class ApplicationController < ActionController::Base
     def logout(user = current_user)
         #consider allowing input user (user = current_user) in logout as well
         #TODO catch these errors
-        if user
-            if session[:session_table].include?(session[:session_token])
-                session[:session_table].delete(session[:session_token])
-                session[:session_token] = nil
-                user.reset_session_token!
-            else
-                raise RuntimeError.new("user's log in was not previously registered")
-                #TODO what am I supposed to do with all these exceptions?
+        if user 
+            if user == current_user
+                if session[:session_table].include?(session[:session_token])
+                    session[:session_table].delete(session[:session_token])
+                    session[:session_token] = nil
+                    user.reset_session_token!
+                else
+                    raise RuntimeError.new("user's log in was not previously registered")
+                    #TODO what am I supposed to do with all these exceptions?
+                end
+            else 
+                if session[:session_table].include?(user.session_token)
+                    session[:session_table].delete(user.session_token)
+                    user.reset_session_token!
+                else
+                    raise RuntimeError.new("user's log in was not previously registered")
+                    #TODO what am I supposed to do with all these exceptions?
+                end
             end
         else
             raise RuntimeError.new("user not currently logged in")

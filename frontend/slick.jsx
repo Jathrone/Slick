@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
             // https://stackoverflow.com/questions/37528076/why-object-keys-is-returns-array-of-string-instead-of-array-of-numbers
             session: { allCurrentUsersIds: Object.keys(window.allCurrentUsers).map(Number) }
         };
-        delete window.allCurrentUsers;
+        // delete window.allCurrentUsers;
     }
     if (window.currentUser) {
         preloadedState.session.currentUserId = window.currentUser.id 
