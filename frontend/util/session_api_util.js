@@ -6,13 +6,15 @@ export const signup = (user) => (
     })
 )
 
-export const login = (user) => (
-    $.ajax({
-        method:"post",
-        url:"api/session",
-        data: {user}
-    })
-)
+export const login = (user) => {
+    return (
+        $.ajax({
+            method:"post",
+            url:"api/session",
+            data: {user}
+        })
+    )
+}
 
 // #TODO consider removing non-current_user logouts for post development
 export const logout = (userId) => {

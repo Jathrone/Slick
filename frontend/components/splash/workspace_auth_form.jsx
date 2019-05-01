@@ -16,6 +16,7 @@ class WorkspaceAuthForm extends React.Component {
         e.preventDefault();
         this.props.action(this.state)
             .then((res) => {
+                
                 this.props.history.push(`/${this.props.formPath}/${res.workspace.id}`)
         })
     }

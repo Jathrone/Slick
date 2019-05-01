@@ -5,6 +5,7 @@ class Api::UsersController < ApplicationController
         @user.display_name = @user.email
         #TODO initialize each user with a chopped version of email instead
         if @user.save
+            login(@user)
             render :show 
         else 
             render json: @user.errors.full_messages, status: 404

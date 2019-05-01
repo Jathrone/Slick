@@ -29,11 +29,13 @@ export const receiveSessionErrors = (errors) => ({
 })
 
 // #TODO login throws a weird error dispatched with empty user arg
-export const login = (user) => (dispatch) => (
-    sessionApiUtil.login(user)
+export const login = (user) => (dispatch) => {
+    return(
+        sessionApiUtil.login(user)
         .then(res => dispatch(receiveCurrentUser(res)),
         err => dispatch(receiveSessionErrors(err)))
-)
+    )
+}
 
 export const logout = () => (dispatch) => (
     sessionApiUtil.logout()
