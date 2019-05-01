@@ -7,6 +7,7 @@ const sessionErrorsReducer = (state = [], action) => {
     switch(action.type) {
         case RECEIVE_SESSION_ERRORS:
             newState = state.slice();
+            // #TODO deal with duplicate errors?
             newState = newState.concat(action.errors);
             return newState;
         case RECEIVE_CURRENT_USER:

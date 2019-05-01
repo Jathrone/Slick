@@ -1,17 +1,18 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import Root from "./components/root"
-import * as sessionApiUtil from "./util/session_api_util";
+import * as sessionActions from "./actions/session_actions";
 import configureStore from "./store/store"
 import * as workspaceActions from "./actions/workspaces_actions";
 
+
 document.addEventListener("DOMContentLoaded", ()=> {
     // testing start
-    window.signup = sessionApiUtil.signup;
-    window.login = sessionApiUtil.login;
-    window.logout = sessionApiUtil.logout;
     window.createWorkspace = workspaceActions.createWorkspace;
     window.fetchWorkspace = workspaceActions.fetchWorkspace;
+    window.signup = sessionActions.signup;
+    window.login = sessionActions.login;
+    window.logout = sessionActions.logout;
     // testing end
     const store = configureStore();
     window.getState = store.getState;
