@@ -14,9 +14,24 @@ export const login = (user) => (
     })
 )
 
-export const logout = () => (
-    $.ajax({
-        method:"delete",
-        url:"api/session"
-    })
-)
+// #TODO consider removing non-current_user logouts for post development
+export const logout = (userId) => {
+    // #TODO should we try if (Number.isInteger(userId)) here to catch potential 0 index errors with more informative responses?
+    if (userId) {
+        return (
+            $.ajax({
+                method: "delete",
+                url: "api/session",
+                data: {userId}
+            })
+        )
+    }
+    else {
+        return (
+            $.ajax({
+                method:"delete",
+                url:"api/session"
+            })
+        )
+    }
+}

@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
 
-    helper_method :current_user, :logged_in?
+    helper_method :current_user, :logged_in?, :all_current_users
 
     def current_user
         @current_user ||= User.find_by(session_token: session[:session_token])
         return @current_user
+    end
+
+    def all_current_users
+        #TODO consider local variable @all_current_users
+        User.where(session_token: session[:session_table])
     end
 
     def logged_in? 
@@ -28,6 +33,7 @@ class ApplicationController < ActionController::Base
                 user.reset_session_token!
             else
                 raise RuntimeError.new("user's log in was not previously registered")
+                #TODO what am I supposed to do with all these exceptions?
             end
         else
             raise RuntimeError.new("user not currently logged in")

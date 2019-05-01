@@ -13,21 +13,33 @@ document.addEventListener("DOMContentLoaded", ()=> {
     window.signup = sessionActions.signup;
     window.login = sessionActions.login;
     window.logout = sessionActions.logout;
+    window.otherLogout = sessionActions.otherLogout;
     // testing end
 
+    // here we load both currentUser and allCurrentUsers into state
     let store;
-    if (window.currentUser) {
-        const preloadedState = {
+    let preloadedState = {};
+    if (window.allCurrentUsers) {
+        let users = {};
+        Object.values(window.allCurrentUsers).forEach((user) => {
+            users[user.id] = user;
+        })
+        preloadedState = {
             entities: {
-                users: { [window.currentUser.id]: window.currentUser }
+                users
             },
-            session: { currentUserId: window.currentUser.id }
+            // the mapping here is important because Object.keys are Property names
+            // https://stackoverflow.com/questions/37528076/why-object-keys-is-returns-array-of-string-instead-of-array-of-numbers
+            session: { allCurrentUsersIds: Object.keys(window.allCurrentUsers).map(Number) }
         };
-        store = configureStore(preloadedState);
-        delete window.currentUser;
-    } else {
-        store = configureStore();
+        delete window.allCurrentUsers;
     }
+    if (window.currentUser) {
+        preloadedState.session.currentUserId = window.currentUser.id 
+        delete window.currentUser;
+    }
+    store = configureStore(preloadedState);
+
     window.getState = store.getState;
     window.dispatch = store.dispatch;
     const root = document.getElementById("root");

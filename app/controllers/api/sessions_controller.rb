@@ -10,8 +10,17 @@ class Api::SessionsController < ApplicationController
         end
     end
 
+    #TODO consider removing non-current_user logouts for post development
     def destroy
-        if current_user
+        if params[:userId]
+            user = User.find_by(id: params[:userId])
+            if user 
+                logout(user)
+                render json: {}, status: 200
+            else 
+                render json: ["user to log out not found"], status: 404
+            end 
+        elsif current_user
             logout
             render json: {}, status: 200
         else 
