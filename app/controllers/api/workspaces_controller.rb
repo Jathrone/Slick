@@ -19,6 +19,20 @@ class Api::WorkspacesController < ApplicationController
         end
     end
 
+    def index
+        if params[:name]
+            @workspace = Workspace.find_by(name: params[:name])
+            if @workspace
+                render :show, status: 200
+            else 
+                render json: ["workspace not found"], status: 404
+            end
+        else 
+            @workspaces = Workspace.all 
+            render :index, status: 200
+        end
+    end
+
     private
     def workspace_params
         params.require(:workspace).permit(:name, :creator_email)

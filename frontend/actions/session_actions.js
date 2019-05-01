@@ -23,7 +23,7 @@ const logoutOtherUser = (userId) => ({
     userId
 })
 
-const receiveSessionErrors = (errors) => ({
+export const receiveSessionErrors = (errors) => ({
     type: RECEIVE_SESSION_ERRORS,
     errors: errors.responseJSON
 })

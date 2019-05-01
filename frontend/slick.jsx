@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
     // testing start
     window.createWorkspace = workspaceActions.createWorkspace;
     window.fetchWorkspace = workspaceActions.fetchWorkspace;
+    window.fetchWorkspaceByName = workspaceActions.fetchWorkspaceByName;
     window.signup = sessionActions.signup;
     window.login = sessionActions.login;
     window.logout = sessionActions.logout;
