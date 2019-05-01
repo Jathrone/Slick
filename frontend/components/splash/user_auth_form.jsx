@@ -1,5 +1,17 @@
 import React from "react";
 
+
+// #TODO find way around 'double render'
+const UserAuthFormWrapper = (props) => {
+    const { fetchWorkspace, workspaceId} = props;
+    if (!props.workspace) {
+        fetchWorkspace(workspaceId)
+    }
+    return (
+        <UserAuthForm {...props}/>
+    );
+}
+
 class UserAuthForm extends React.Component {
     constructor(props) {
         super(props)
@@ -29,7 +41,7 @@ class UserAuthForm extends React.Component {
     render() {
         return (
             <div>
-                <h4>Sign in to {this.props.workspaceName}</h4>
+                <h4>{this.props.submitButtonText} to {(this.props.workspace) ? this.props.workspace.name : null}</h4>
                 <h6>Enter your email address and password</h6>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="email">Email:</label>
@@ -52,4 +64,4 @@ class UserAuthForm extends React.Component {
     }
 }
 
-export default UserAuthForm;
+export default UserAuthFormWrapper;
