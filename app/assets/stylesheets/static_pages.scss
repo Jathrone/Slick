@@ -2,10 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url('https://fonts.googleapis.com/css?family=Lato');
-$font-stack: 'Lato', sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Lato:700,900');
+
+$font-lato: 'Lato', sans-serif;
 
 * {
-    font: 100% $font-stack;
-    font-weight: 500;
+    font: 100% $font-lato;
+}
+
+h1 {
+    font-weight: 900;
 }
