@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", ()=> {
     window.login = sessionActions.login;
     window.logout = sessionActions.logout;
     window.otherLogout = sessionActions.otherLogout;
+    window.activateSession = sessionActions.activateSession;
     // testing end
+
 
     // here we load both currentUser and allCurrentUsers into state
     let store;

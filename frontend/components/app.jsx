@@ -8,14 +8,13 @@ import UserSignUpContainer from "./splash/user_sign_up_container";
 
 const App = () => {
     return(
-    <div>
-        <h1>Top of App.jsx</h1>
+    <>
         <Route exact path="/" component={SplashContainer}></Route>
         <Route exact path="/signin" component={WorkspaceLogInContainer}></Route>
         <Route exact path="/get-started" component={WorkspaceSignUpContainer}></Route>
         <Route path="/signin/:workspaceId" component={UserLogInContainer}></Route>
         <Route path="/get-started/:workspaceId" component={UserSignUpContainer}></Route>
-    </div>
+    </>
     );
 }
 

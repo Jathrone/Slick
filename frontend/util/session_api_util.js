@@ -37,3 +37,11 @@ export const logout = (userId) => {
         )
     }
 }
+
+export const activateSession = (userId) => (
+    $.ajax({
+        method:"post",
+        url:`api/session?active_user_id=${userId}`,
+        data:{}
+    })
+)

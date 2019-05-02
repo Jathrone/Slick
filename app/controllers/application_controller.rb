@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-    helper_method :current_user, :logged_in?, :all_current_users
+    helper_method :current_user, :logged_in?, :all_current_users, :activate_session
 
     def current_user
         @current_user ||= User.find_by(session_token: session[:session_token])
@@ -53,6 +53,16 @@ class ApplicationController < ActionController::Base
             end
         else
             raise RuntimeError.new("user not currently logged in")
+        end
+    end
+
+    def activate_session(id)
+        @user = User.find_by(id: id)
+        if session[:session_table].include?(@user.session_token)
+            session[:session_token] = @user.session_token
+            return true
+        else 
+            return nil
         end
     end
 

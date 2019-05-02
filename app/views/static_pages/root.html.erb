@@ -4,6 +4,11 @@
             "api/users/user.json.jbuilder",
             user: current_user
         ).html_safe %>
+    </script>
+<% end %>
+
+<% if all_current_users.length > 0 %>
+    <script type="text/javascript">
         window.allCurrentUsers = <%= render(
             "api/users/index.json.jbuilder",
             users: all_current_users

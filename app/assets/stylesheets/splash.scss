@@ -1,0 +1,154 @@
+$splash-gray: #454545;
+
+$slack-blue: #1264A3;
+
+.splash-header {
+    height: 70px;
+    width: 1230px;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+}
+
+.slick-logo-div {
+    height: 70px;
+    width: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}
+
+.splash-nav {
+    float: right;
+    height: 70px;
+    width: 1105px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.client-resources-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.client-resources-list li {
+    color: $splash-gray;
+    line-height: 1.28571429;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.splash-modal-button {
+    color: #fff;
+    font-size: 1rem;
+
+    background: #611f69;
+    box-shadow: none;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 4px;
+    border: 2px solid #611f69;
+    text-align: center;
+    padding: 10px;
+    margin: 16px;
+    transition: 400ms;
+}
+
+.splash-modal-button:hover {
+    border-color: #4a154b;
+    background-color: #4a154b;
+}
+
+.splash-modal-button-container {
+    position: relative;
+}
+
+// #TODO remove after testing
+main {
+    height: 3000px;
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.modal-child {
+    background: white;
+    position: absolute;
+    top: 74px;
+    right: 16px;
+    width: 288px;
+    border-radius: 4px;
+    padding-bottom: 16px;
+    box-shadow: 0 0 8px #ccc; //#TODO look up shadow color
+    z-index: 11;
+}
+
+
+.modal-child ul li {
+    cursor: pointer;
+    border-width: 4px;
+    width: 272px;
+    height: 46px;
+    margin: 8px;  // #TODO check spacing between list items
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 200ms;
+    transition-timing-function: ease-out;
+
+    font-size: 18px;
+    color: $splash-gray;
+}
+
+.modal-child ul li:hover {
+    background: #f5f5f5;
+}
+
+.modal-child ul::after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 16px;
+    height: 0px;
+    width: 260px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+.workspace-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    margin: 0px 18px 0px 0px;
+    border-radius: 4px;
+
+    color: #1264a3;
+    background-color: #f5f5f5;
+
+}
+
+.modal-child a {
+    display: inline-block;
+    // padding: 8px;
+    margin: 8px 24px;
+    text-decoration: none;
+    color: $splash-gray;
+}
+
+.modal-child a:hover {
+    color: $slack-blue;
+}
+
+

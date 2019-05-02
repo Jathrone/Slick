@@ -56,3 +56,8 @@ export const signup = (user) => (dispatch) => (
         err => dispatch(receiveSessionErrors(err)))
 )
 
+export const activateSession = (userId) => (dispatch) => (
+    sessionApiUtil.activateSession(userId)
+        .then(res => dispatch(receiveCurrentUser(res)),
+            err => dispatch(receiveSessionErrors(err)))
+)

@@ -1,12 +1,21 @@
 class Api::SessionsController < ApplicationController
 
     def create
-        @user = User.find_by_credentials(*listed_user_params)
-        if @user 
-            login(@user)
-            render "api/users/show"
+        if params[:active_user_id]
+            if activate_session(params[:active_user_id])
+                @user = current_user
+                render "api/users/show", status: 200
+            else 
+                render json: ["invalid credentials"], status: 404
+            end
         else 
-            render json: ["invalid credentails"], status: 404
+            @user = User.find_by_credentials(*listed_user_params)
+            if @user 
+                login(@user)
+                render "api/users/show"
+            else 
+                render json: ["invalid credentials"], status: 404
+            end
         end
     end
 
