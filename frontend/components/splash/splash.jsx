@@ -4,11 +4,11 @@ import SplashWorkspaceSignUpForm from "./splash_workspace_sign_up_form";
 
 class Splash extends React.Component {
 
-    componentDidMount() {
-        this.props.allActiveWorkspacesIds.forEach(workspaceId => {
-            this.props.fetchWorkspace(workspaceId);
-        })
-    }
+    // componentDidMount() {
+    //     this.props.allActiveWorkspacesIds.forEach(workspaceId => {
+    //         this.props.fetchWorkspace(workspaceId);
+    //     })
+    // }
 
     render () {
         let navbar;

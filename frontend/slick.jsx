@@ -27,15 +27,21 @@ document.addEventListener("DOMContentLoaded", ()=> {
         Object.values(window.allCurrentUsers).forEach((user) => {
             users[user.id] = user;
         })
+        let workspaces = {};
+        Object.values(window.allActiveWorkspaces).forEach((workspace) => {
+            workspaces[workspace.id] = workspace;
+        })
         preloadedState = {
             entities: {
+                workspaces,
                 users
             },
             // the mapping here is important because Object.keys are Property names
             // https://stackoverflow.com/questions/37528076/why-object-keys-is-returns-array-of-string-instead-of-array-of-numbers
             session: { allCurrentUsersIds: Object.keys(window.allCurrentUsers).map(Number) }
         };
-        // delete window.allCurrentUsers;
+        delete window.allCurrentUsers;
+        delete window.allActiveWorkspaces;
     }
     if (window.currentUser) {
         preloadedState.session.currentUserId = window.currentUser.id 

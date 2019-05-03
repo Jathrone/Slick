@@ -5,11 +5,11 @@
 //     })
 // }
 
-export const fetchWorkspacesIdsFromUsersIds = (state) => {
-    return state.session.allCurrentUsersIds.map(userId => {
-        return state.entities.users[userId].workspaceId
-    })
-}
+// export const fetchWorkspacesIdsFromUsersIds = (state) => {
+//     return state.session.allCurrentUsersIds.map(userId => {
+//         return state.entities.users[userId].workspaceId
+//     })
+// }
 
 export const currentUserIdAndWorkspaceNames = (state) => {
     let mapped_slice = [];

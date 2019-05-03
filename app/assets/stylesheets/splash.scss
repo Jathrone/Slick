@@ -159,7 +159,7 @@ main {
 .splash-main {
     width: 1230px;
     margin: 0 auto;
-    margin-top: 90px;
+    margin-top: 65px;
 }
 
 .splash-grid-container {
@@ -208,6 +208,48 @@ main {
     grid-row: 4 / 5;
 }
 
+.splash-main-get-started-form #submit {
+    text-decoration: none;
+    line-height: 1.28571429;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: #611f69;
+    border: 2px solid #611f69;
+    border-radius: 4px;
+
+    cursor: pointer;
+    text-align: center;
+    padding: 18.5px 39px;
+    margin: 0px 0px 0px 15px;
+    transition: 400ms;
+}
+
+.splash-main-get-started-form #submit:hover {
+    border-color: #4a154b;
+    background-color: #4a154b;
+}
+
+.splash-main-get-started-form #email {
+    padding: 19px;
+    width: 250px;
+    box-sizing: border-box;
+    border: 1px solid #696969;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.splash-main-get-started-form #email:focus {
+    outline: none;
+    border-color: #4a154b;
+}
+
+.splash-main-get-started-form p {
+    margin-top: 16px;
+    font-size: 14px;
+    color: $splash-gray;
+}
+
 .auth-link-container {
     display: flex;
     justify-content: flex-end;
@@ -241,8 +283,6 @@ main {
     border-color: #4a154b;
     background-color: #4a154b;
 }
-
-
 
 
 

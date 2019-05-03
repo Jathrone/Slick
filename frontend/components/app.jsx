@@ -10,6 +10,7 @@ const App = () => {
     return(
     <>
         <Route exact path="/" component={SplashContainer}></Route>
+        <Route path="signin"></Route>
         <Route exact path="/signin" component={WorkspaceLogInContainer}></Route>
         <Route exact path="/get-started" component={WorkspaceSignUpContainer}></Route>
         <Route path="/signin/:workspaceId" component={UserLogInContainer}></Route>
