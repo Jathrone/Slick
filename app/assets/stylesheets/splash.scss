@@ -4,6 +4,10 @@ $splash-header-gray: rgb(30, 30, 30);
 
 $slack-blue: #1264A3;
 
+.splash-header a {
+    text-decoration: none;
+}
+
 .splash-header {
     height: 70px;
     width: 1230px;
@@ -18,9 +22,23 @@ $slack-blue: #1264A3;
     height: 70px;
     width: 125px;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     float: left;
+    font-size:30px;
+    text-align: center 
+}
+.slick-logo-div a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.slick-logo-div a div {
+    margin-left: 4px;
+    color: black;
 }
 
 .splash-nav {
@@ -154,6 +172,10 @@ main {
 
 .modal-child a:hover {
     color: $slack-blue;
+}
+
+.modal-child a i {
+    display: none;
 }
 
 .splash-main {

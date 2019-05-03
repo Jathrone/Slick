@@ -1,5 +1,6 @@
-import { RECEIVE_CURRENT_USER, RECEIVE_SESSION_ERRORS } from "../actions/session_actions";
+import { RECEIVE_CURRENT_USER, RECEIVE_SESSION_ERRORS, CLEAR_SESSION_ERRORS } from "../actions/session_actions";
 import { RECEIVE_WORKSPACE } from "../actions/workspaces_actions";
+import { union } from "lodash";
 
 
 const sessionErrorsReducer = (state = [], action) => {
@@ -7,13 +8,12 @@ const sessionErrorsReducer = (state = [], action) => {
     let newState;
     switch(action.type) {
         case RECEIVE_SESSION_ERRORS:
-            newState = state.slice();
-            // #TODO deal with duplicate errors?
-            newState = newState.concat(action.errors);
-            return newState;
+            return action.errors;
         case RECEIVE_CURRENT_USER:
             return [];
         case RECEIVE_WORKSPACE:
+            return [];
+        case CLEAR_SESSION_ERRORS:
             return [];
         default:
             return state;

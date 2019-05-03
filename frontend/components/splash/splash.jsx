@@ -27,16 +27,17 @@ class Splash extends React.Component {
             <>
                 <header className="splash-header">
                     <div className="slick-logo-div">
-                        <Link to={`/`}>slick</Link>
+                        <Link to={`/`}><img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-199wkt/Slack_Mark.png?width=30" alt="slick but actually slack logo" /><div>slick</div></Link>
                     </div>
                     <nav className="splash-nav">
                         <ul className="client-resources-list">
                             <li>Why Slick?</li>
                             <li>Solutions</li>
-                            <li>Resouces</li>
+                            <li>Resources</li>
                             <li>Enterprise</li>
                             <li>Pricing</li>
                         </ul>
+                        <button onClick={this.props.signInDemoUser}>DEMO</button>
                         {navbar}
                     </nav>
                 </header>

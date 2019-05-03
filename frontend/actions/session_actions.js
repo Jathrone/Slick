@@ -1,4 +1,5 @@
 import * as sessionApiUtil from "../util/session_api_util";
+import { fetchWorkspace } from "./workspaces_actions";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
@@ -6,6 +7,7 @@ export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 // #TODO consider removing non-current_user logouts for post development
 export const LOGOUT_OTHER_USER = "LOGOUT_OTHER_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 
 const receiveCurrentUser = (payload) => ({
@@ -21,6 +23,10 @@ const logoutCurrentUser = () => ({
 const logoutOtherUser = (userId) => ({
     type: LOGOUT_OTHER_USER,
     userId
+})
+
+export const clearSessionErrors = () => ({
+    type: CLEAR_SESSION_ERRORS
 })
 
 export const receiveSessionErrors = (errors) => ({
@@ -61,3 +67,15 @@ export const activateSession = (userId) => (dispatch) => (
         .then(res => dispatch(receiveCurrentUser(res)),
             err => dispatch(receiveSessionErrors(err)))
 )
+
+// #TODO remember to update demoUser often! when database changes!
+const demoUser = {workspace_id: 19, email: "user@demo.com", password: "password"}
+
+
+export const signInDemoUser = () => (dispatch) => {
+    return sessionApiUtil.login(demoUser)
+        .then(res => dispatch(receiveCurrentUser(res)),
+            err => dispatch(receiveSessionErrors(err)))
+        .then(payload => dispatch(fetchWorkspace(payload.payload.user.workspaceId)),
+            err => dispatch(receiveSessionErrors(err)))
+}

@@ -92,3 +92,7 @@ hr {
 input, select {
     vertical-align:middle;
 }
+
+input:focus, textarea:focus {
+    outline: none;
+}
