@@ -7,9 +7,18 @@ import WorkspaceAuthForm from "./workspace_auth_form";
 class WorkspaceSignUp extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            email: "",
-            emailReady: false
+
+        // #TODO this logic allows state prefilling depending on previous route
+        if (this.props.location.state) {
+            this.state = {
+                email: this.props.location.state.email,
+                emailReady: this.props.location.state.emailReady
+            }
+        } else {
+            this.state = {
+                email: "",
+                emailReady: false
+            }
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

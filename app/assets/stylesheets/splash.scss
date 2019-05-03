@@ -41,6 +41,7 @@ $slack-blue: #1264A3;
 }
 
 .client-resources-list li {
+
     color: $splash-gray;
     line-height: 1.28571429;
     font-size: 1rem;
@@ -201,6 +202,46 @@ main {
     grid-row: 3 / 4;
     color: $splash-gray
 }
+
+.splash-grid-container .splash-main-get-started-form {
+    grid-column: 5 / 7;
+    grid-row: 4 / 5;
+}
+
+.auth-link-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.auth-link-container a {
+    text-decoration: none;
+    color: $splash-gray;
+    line-height: 1.28571429;
+    font-size: 1rem;
+
+}
+
+.auth-link-container a:last-child {
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: #611f69;
+    border: 2px solid #611f69;
+    border-radius: 4px;
+
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 14px;
+    margin: 0px 0px 0px 30px;
+    transition: 400ms;
+}
+
+.auth-link-container a:last-child:hover {
+    border-color: #4a154b;
+    background-color: #4a154b;
+}
+
 
 
 
