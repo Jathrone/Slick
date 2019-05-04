@@ -14,8 +14,8 @@ const LogInModal = ({ modalState, closeLogInModal }) => {
         <>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
                 <ActiveWorkspaceListContainer />
-                <Link to={`/signin`}><i className="fas fa-plus"></i>Sign into Another Workspace</Link>
-                <Link to={`/get-started`}><i className="fab fa-slack"></i>Create Workspace</Link>
+                <Link onClick={closeLogInModal} to={`/signin`}><i className="fas fa-plus"></i>Sign into Another Workspace</Link>
+                <Link onClick={closeLogInModal} to={`/get-started`}><i className="fab fa-slack"></i>Create Workspace</Link>
             </div>
             <div className="modal-background" onClick={closeLogInModal}>
             </div>

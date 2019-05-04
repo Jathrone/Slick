@@ -2,6 +2,8 @@ $slack-accessible-green: #007A5A;
 
 $slack-accessible-green-active:#00553E;
 
+$slack-accessible-blue: #1264a3;
+
 $splash-gray: #454545;
 
 $splash-header-gray: rgb(30, 30, 30);
@@ -333,3 +335,7 @@ main {
 
 
 
+.splash-form-mini-link {
+    color: $slack-accessible-blue;
+    text-decoration: none;
+}

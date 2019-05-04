@@ -69,7 +69,7 @@ export const activateSession = (userId) => (dispatch) => (
 )
 
 // #TODO remember to update demoUser often! when database changes!
-const demoUser = {workspace_id: 19, email: "user@demo.com", password: "password"}
+const demoUser = {workspace_id: 1, email: "user@demo.com", password: "password"}
 
 
 export const signInDemoUser = () => (dispatch) => {

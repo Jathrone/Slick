@@ -39,7 +39,7 @@ class SplashWorkspaceSignUpForm extends React.Component {
                 
                 <input id="submit" type="submit" value="GET STARTED"/>
                 <br/>
-                <p>Already using Slick? <Link to="/signin">Sign in</Link>.</p>
+                <p>Already using Slick? <Link className="splash-form-mini-link" to="/signin">Sign in</Link>.</p>
             </form>
         )
     }
