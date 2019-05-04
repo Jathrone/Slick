@@ -1,3 +1,7 @@
+$slack-accessible-green: #007A5A;
+
+$slack-accessible-green-active:#00553E;
+
 $splash-gray: #454545;
 
 $splash-header-gray: rgb(30, 30, 30);
@@ -78,7 +82,7 @@ $slack-blue: #1264A3;
     border: 2px solid #611f69;
     text-align: center;
     padding: 10px;
-    margin: 16px;
+    margin: 16px 0px 16px 16px;
     transition: 400ms;
 }
 
@@ -286,7 +290,7 @@ main {
 
 }
 
-.auth-link-container a:last-child {
+.auth-link-container a:nth-of-type(2) {
     color: #fff;
     font-size: 14px;
     letter-spacing: 1px;
@@ -301,10 +305,31 @@ main {
     transition: 400ms;
 }
 
-.auth-link-container a:last-child:hover {
+.auth-link-container a:nth-of-type(2):hover {
     border-color: #4a154b;
     background-color: #4a154b;
 }
+
+.splash-demo-button {
+    color: #fff;
+
+    background: $slack-accessible-green;
+    box-shadow: none;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 4px;
+    border: 2px solid $slack-accessible-green;
+    text-align: center;
+    padding: 10px;
+    margin: 16px 16px 16px 24px;
+    transition: 400ms;
+}
+
+.splash-demo-button:hover {
+    border-color: $slack-accessible-green-active;
+    background-color: $slack-accessible-green-active;
+}
+
 
 
 

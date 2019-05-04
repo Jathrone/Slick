@@ -16,6 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
     yourWorkspacesButton: (
         <div className="splash-modal-button-container">
             <button onClick={() => dispatch(openLogInModal())} className="splash-modal-button">Your Workspaces</button>
+            <button className="splash-demo-button" onClick={() => dispatch(signInDemoUser())}>DEMO</button>
             <LogInModal />
         </div>
     ),

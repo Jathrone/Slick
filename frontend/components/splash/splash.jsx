@@ -18,8 +18,8 @@ class Splash extends React.Component {
             navbar = 
                 <div className="auth-link-container">
                     <Link to={`/signin`}>Sign in</Link> 
-                    <br/>
                     <Link to={`/get-started`}>GET STARTED</Link>
+                    <button className="splash-demo-button" onClick={this.props.signInDemoUser}>DEMO</button>
                 </div>
         }
 
@@ -37,7 +37,6 @@ class Splash extends React.Component {
                             <li>Enterprise</li>
                             <li>Pricing</li>
                         </ul>
-                        <button onClick={this.props.signInDemoUser}>DEMO</button>
                         {navbar}
                     </nav>
                 </header>
