@@ -12,8 +12,10 @@ class ApplicationController < ActionController::Base
         active_session_tokens = all_current_users.map do |user| 
             user.session_token
         end 
-        session[:session_table].delete_if do |session_token|
-            !active_session_tokens.include?(session_token)
+        if session[:session_table]
+            session[:session_table].delete_if do |session_token|
+                !active_session_tokens.include?(session_token)
+            end
         end
         return all_current_users
     end
