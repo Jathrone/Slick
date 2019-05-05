@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom";
 import WrapperAuthFormGetStartedContainer from './wrapper_auth_form_get_started_container';
 import WrapperAuthFormSignInContainer from "./wrapper_auth_form_sign_in_container";
 import AuthErrorIndexContainer from "./auth_error_index_container";
-import AvailableWorkspaceListContainer from "./available_workspace_list_container";
+// import AvailableWorkspaceListContainer from "./available_workspace_list_container";
 
 const AuthPageWrapper = (props) => {
 
@@ -33,7 +33,7 @@ const AuthPageWrapper = (props) => {
             <AuthErrorIndexContainer />
             <Route path="/signin" component={WrapperAuthFormSignInContainer}></Route>
             <Route path="/get-started" component={WrapperAuthFormGetStartedContainer}></Route>
-            <AvailableWorkspaceListContainer />
+            {/* <AvailableWorkspaceListContainer /> */}
             <section className="auth-page-bottom-section">
                     <p>Need to get your group started on Slack? 
                         <Link to={{

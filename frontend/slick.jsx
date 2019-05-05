@@ -43,10 +43,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
         delete window.allCurrentUsers;
         delete window.allActiveWorkspaces;
     }
-    if (window.currentUser) {
-        preloadedState.session.currentUserId = window.currentUser.id 
-        delete window.currentUser;
-    }
     store = configureStore(preloadedState);
 
     window.getState = store.getState;
