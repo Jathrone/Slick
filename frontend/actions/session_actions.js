@@ -74,8 +74,19 @@ const demoUser = {workspace_id: 1, email: "user@demo.com", password: "password"}
 
 export const signInDemoUser = () => (dispatch) => {
     return sessionApiUtil.login(demoUser)
-        .then(res => dispatch(receiveCurrentUser(res)),
-            err => dispatch(receiveSessionErrors(err)))
-        .then(payload => dispatch(fetchWorkspace(payload.payload.user.workspaceId)),
-            err => dispatch(receiveSessionErrors(err)))
+        .then(res => {
+            return dispatch(receiveCurrentUser(res))
+        },
+            err => {
+
+                return dispatch(receiveSessionErrors(err))}
+            )
+
+
+        .then(payload => {
+            return dispatch(fetchWorkspace(payload.payload.user.workspaceId))
+        },
+            err => {
+                return dispatch(receiveSessionErrors(err))
+            })
 }
