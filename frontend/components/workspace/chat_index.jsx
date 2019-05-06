@@ -6,11 +6,10 @@ class ChatIndex extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchAllMessages("channel", 1) //#TODO for now there is only one channel
+        this.props.fetchAllMessages()
     }
 
     render() {
-        debugger
         return (
             <ul>
                 {this.props.messages.map((message) => (

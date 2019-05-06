@@ -6,6 +6,8 @@ class ChatForm extends React.Component {
         this.state = {
             body: ""
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -16,17 +18,20 @@ class ChatForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.submitForm(this.state)
+        this.props.createMessage(this.state)
     }
 
     render() {
-        <form onSubmit={this.handleSubmit}>
-            <textarea 
-                cols="30" 
-                rows="10"
-                value={this.state.body}
-                onChange={this.handleChange}/>
-        </form>
+        return(
+            <form onSubmit={this.handleSubmit}>
+                <textarea 
+                    cols="30" 
+                    rows="10"
+                    value={this.state.body}
+                    onChange={this.handleChange}/>
+                <input type="submit" value="submit"/>
+            </form>
+        )
     }
 }
 

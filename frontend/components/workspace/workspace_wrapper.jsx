@@ -1,12 +1,10 @@
 import React from "react";
-import ChatIndexContainer from "./chat_index_container";
-import ChatForm from "./chat_form"
+import MainSectionContainer from "./main_section_container"; 
 
 const WorkspaceWrapper = () => (
     <>
         <h1>woah there</h1>
-        <ChatIndexContainer />
-        <ChatForm />
+        <MainSectionContainer />
     </>
 );
 export default WorkspaceWrapper;
