@@ -18,6 +18,11 @@ class Message < ApplicationRecord
     belongs_to :parent, 
         polymorphic: true
 
-    has_many :comments, as: :parent, 
+    has_many :messages, as: :parent, 
         class_name: "Message"
+    
+    belongs_to :sender,
+        primary_key: :id,
+        foreign_key: :sender_id,
+        class_name: :User
 end

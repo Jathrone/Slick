@@ -9,6 +9,6 @@
 
 class DirectMessage < ApplicationRecord
 
-    has_many :comments, as: :parent, 
+    has_many :messages, as: :parent, 
         class_name: "Message"
 end

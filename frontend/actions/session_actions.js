@@ -72,6 +72,7 @@ export const activateSession = (userId) => (dispatch) => (
 const demoUser = {workspace_id: 1, email: "user@demo.com", password: "password"}
 
 
+// #TODO modify signInDemoUser to take in a getState and eliminate unnecessary fetchWorkspaces
 export const signInDemoUser = () => (dispatch) => {
     return sessionApiUtil.login(demoUser)
         .then(res => {
