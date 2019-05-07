@@ -1,13 +1,13 @@
 import React from "react";
-import { Redirect, withRouter, Route } from "react-router-dom";
+import { withRouter, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-const ReverseAuth = ({ component: Component, path, loggedIn, exact}) => (
+const ReverseAuth = ({ component: Component, path, loggedIn, exact, redirect}) => (
     <Route path={path} exact={exact} render={(props) => (
         !loggedIn ? (
             <Component {...props} />
         ) : (
-            <Redirect to="/messages" />
+            null
         )
     )}></Route>
 )
@@ -17,10 +17,20 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
         loggedIn ? (
             <Component {...props} />
         ) : (
-            <Redirect to="/" />
+            null
             )
     )}></Route>
 )
+
+const ReverseAuthRedirect = ({path, loggedIn}) => {
+    return (
+        !loggedIn ? (
+            <Redirect to={path}/>
+        ) : (
+            null
+        )
+    )
+};
 
 const mapStateToProps = state => {
     return {loggedIn: Boolean(state.session.currentUserId)}
@@ -28,3 +38,4 @@ const mapStateToProps = state => {
 
 export const ReverseAuthRoute = withRouter(connect(mapStateToProps)(ReverseAuth));
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
+export const ReverseAuthRedirectRoute = withRouter(connect(mapStateToProps)(ReverseAuthRedirect));

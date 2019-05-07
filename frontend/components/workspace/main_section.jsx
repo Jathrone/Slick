@@ -1,7 +1,7 @@
 import React from "react";
 import ChatIndex from "./chat_index";
 import ChatForm from "./chat_form";
-import ChatToggler from "./chat_toggler";
+// import ChatToggler from "./chat_toggler";
 
 class MainSection extends React.Component {
 
@@ -30,6 +30,8 @@ class MainSection extends React.Component {
     componentDidUpdate(prevProps) {
         if ((this.props.parentType !== prevProps.parentType) || (this.props.parentId !== prevProps.parentId)) {
 
+            // #TODO go in and remove all messages from the last main section
+
             const parentType = this.props.parentType;
             const parentId = this.props.parentId;
             this.props.fetchAllMessages(parentType, parentId)
@@ -54,14 +56,13 @@ class MainSection extends React.Component {
     }
  
     render () {
-        const { senderId, parentType, parentId, messages, fetchAllMessages, createMessage, toggleMainWorkspace } = this.props
+        const { senderId, parentType, parentId, messages, createMessage, toggleMainWorkspace } = this.props
         return (
-            <>
-                <h1>{parentType}, {parentId}</h1>
-                <ChatToggler toggleMainWorkspace={toggleMainWorkspace} parentType={parentType} parentId={parentId}/>
+            <div className="workspace-main-section">
+                {/* <ChatToggler toggleMainWorkspace={toggleMainWorkspace} parentType={parentType} parentId={parentId}/> */}
                 <ChatIndex messages={messages}/>
-                <ChatForm createMessage={({body}) => createMessage(senderId, parentType, parentId, body)}/>
-            </>
+                <ChatForm createMessage={({body}) => createMessage(senderId, body)}/>
+            </div>
         )
     }
 }
