@@ -16,7 +16,7 @@ const WorkspaceActiveArea = (props) => {
         <div className="workspace-active-area">
             <div className="workspace-active-nav-bar">chatType: {parentType}, chatId: {parentId}</div>
             <div className="workspace-active-chat-area">
-                <MainSectionContainer parentType={parentType} parentId={parentId}/>
+                <MainSectionContainer parentType={parentType} parentId={parentId} currentUserId={props.currentUser.id}/>
                 {/* #TODO here goes side container */}
             </div>
         </div>

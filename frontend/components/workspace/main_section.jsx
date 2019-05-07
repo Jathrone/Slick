@@ -1,7 +1,6 @@
 import React from "react";
 import ChatIndex from "./chat_index";
 import ChatForm from "./chat_form";
-// import ChatToggler from "./chat_toggler";
 
 class MainSection extends React.Component {
 
@@ -11,9 +10,9 @@ class MainSection extends React.Component {
 
 
     componentDidMount() {
-        const parentType = this.props.parentType;
-        const parentId = this.props.parentId;
-        this.props.fetchAllMessages(parentType, parentId)
+        const {parentType, parentId} = this.props;
+
+        this.props.fetchAllMessages()
         
         App.mainChatSubscription = App.cable.subscriptions.create(
             {channel: "ChatChannel",
@@ -32,9 +31,9 @@ class MainSection extends React.Component {
 
             // #TODO go in and remove all messages from the last main section
 
-            const parentType = this.props.parentType;
-            const parentId = this.props.parentId;
-            this.props.fetchAllMessages(parentType, parentId)
+            const { parentType, parentId } = this.props;
+
+            this.props.fetchAllMessages()
 
             App.cable.subscriptions.remove(App.mainChatSubscription);
             
@@ -56,12 +55,11 @@ class MainSection extends React.Component {
     }
  
     render () {
-        const { senderId, parentType, parentId, messages, createMessage, toggleMainWorkspace } = this.props
+        const { messages, createMessage } = this.props
         return (
             <div className="workspace-main-section">
-                {/* <ChatToggler toggleMainWorkspace={toggleMainWorkspace} parentType={parentType} parentId={parentId}/> */}
                 <ChatIndex messages={messages}/>
-                <ChatForm createMessage={({body}) => createMessage(senderId, body)}/>
+                <ChatForm createMessage={({body}) => createMessage(body)}/>
             </div>
         )
     }
