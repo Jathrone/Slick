@@ -4,7 +4,7 @@ class Api::MessagesController < ApplicationController
         parent_type, parent_id = params["parent_type"], params["parent_id"].to_i
         case parent_type
         when "Channel"
-            @chat = Channel.find_by(id: parent_id)
+            @chat = Channel.where(id: parent_id).includes(:messages)[0]
         when "DirectMessage"
             @chat = DirectMessage.find_by(id: parent_id)
         when "Message"
@@ -23,7 +23,7 @@ class Api::MessagesController < ApplicationController
     def create
         @message = Message.new(message_params)
         if @message.save
-            render :show, status: 200
+            ChatChannel.broadcast_to(Channel.first, JSON.parse(render :show))
         else 
             render json: @message.errors.full_messages, status: 404
         end

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { createMessage, fetchAllMessages } from "../../actions/messages_actions";
+import { createMessage, fetchAllMessages, receiveMessage } from "../../actions/messages_actions";
 import MainSection from "./main_section";
 import { getMessages } from "../../reducers/messages_selector";
 
@@ -14,7 +14,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         createMessage: ({body}) => dispatch(createMessage(senderId, parentType, parentId, body)),
-        fetchAllMessages: () => dispatch(fetchAllMessages(parentType, parentId))
+        fetchAllMessages: () => dispatch(fetchAllMessages(parentType, parentId)),
+        receiveMessage: (message) => dispatch(receiveMessage(message))
     };
 };
 

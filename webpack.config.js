@@ -1,10 +1,10 @@
 var path = require('path');
 
 module.exports = {
-  entry: './frontend/slick.jsx',
+  entry: path.join(__dirname, "frontend", "slick.jsx"),
   output: {
     path: path.resolve(__dirname, "app", "assets", "javascripts"),
-    filename: './bundle.js',
+    filename: 'bundle.js',
   },
   module: {
     rules: [

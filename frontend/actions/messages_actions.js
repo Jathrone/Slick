@@ -8,10 +8,10 @@ const receiveMessages = (messages) => ({
     payload: messages
 });
 
-const receiveMessage = (message) => ({
+export const receiveMessage = (message) => ({
     type: RECEIVE_MESSAGE, 
     payload: message
-})
+});
 
 export const fetchAllMessages = (parentType, parentId) => (dispatch) => (
     messageApiUtil.fetchAllMessages(parentType, parentId)
