@@ -4,11 +4,22 @@ import { receiveSessionErrors } from "./session_actions";
 
 export const RECEIVE_WORKSPACE = "RECEIVE_WORKSPACE";
 
+export const TOGGLE_MAIN_WORKSPACE = "TOGGLE_MAIN_WORKSPACE";
+
 
 const receiveWorkspace = (workspace) => ({
     type: RECEIVE_WORKSPACE,
     workspace
 })
+
+export const toggleMainWorkspace = (parentType, parentId) => {
+    return {
+    type: TOGGLE_MAIN_WORKSPACE,
+    payload: {
+        parentType,
+        parentId
+    }
+}};
 
 export const createWorkspace = (workspace) => (dispatch) => (
     workspacesApiUtil.createWorkspace(workspace)

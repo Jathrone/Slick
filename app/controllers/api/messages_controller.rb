@@ -23,7 +23,7 @@ class Api::MessagesController < ApplicationController
     def create
         @message = Message.new(message_params)
         if @message.save
-            ChatChannel.broadcast_to(Channel.first, JSON.parse(render :show))
+            ChatChannel.broadcast_to(@message.parent, JSON.parse(render :show))
         else 
             render json: @message.errors.full_messages, status: 404
         end

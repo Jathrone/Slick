@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
         session[:session_table] ||= []
         session[:session_table].push(session[:session_token])
         @current_user = user
+        cookies.signed[:user_id] = current_user.id
     end
 
     def logout(user = current_user)
@@ -39,6 +40,7 @@ class ApplicationController < ActionController::Base
                 if session[:session_table].include?(session[:session_token])
                     session[:session_table].delete(session[:session_token])
                     session[:session_token] = nil
+                    cookies.signed[:user_id] = nil
                     user.reset_session_token!
                 else
                     raise RuntimeError.new("user's log in was not previously registered")
@@ -58,10 +60,12 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    #TODO must limit the size of session[:session_table]
     def activate_session(id)
         @user = User.find_by(id: id)
         if session[:session_table].include?(@user.session_token)
             session[:session_token] = @user.session_token
+            cookies.signed[:user_id] = @user.id
             return true
         else 
             return nil
