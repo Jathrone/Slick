@@ -31,19 +31,70 @@ $slack-aubergine-active: #7C3085;
 }
 
 .workspace-active-nav-bar {
+  box-sizing: border-box;
   flex: 0 1 60px;
   border: 1px solid red;
 }
 
 .workspace-active-chat-area {
+  box-sizing: border-box;
   flex: 1 1 auto;
   border: 1px solid red;
+
+  display: flex;
+  flex-direction: row;
 }
 
+.workspace-main-section {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column
+}
+
+// FORM HELL STARTS HERE
+
+.main-chat-form {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+
+  // max-height: calc( 60% + 30px);
+  padding: 10px;
+  
+  display: flex;
+  flex-direction: row;
+  // align-items: center;
+}
+
+.main-chat-form-bar {
+  flex: 1 1 auto;
+
+  // max-height: 100%;
+
+  // margin: 0px 20px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+#main-chat-textarea {
+  box-sizing: border-box;
+  width: 100%;
+  // max-height: 100%;
+  // margin-bottom: 10p;
+
+  resize: none;
+  padding: 0;
+}
+
+
+// FORM HELL ENDS HERE
+
 .workspace-main-chat-list {
-  overflow-y: scroll;
-  height: 300px;
-  width: 400px;
+  box-sizing: border-box;
+  flex: 0 1 auto;
+
+  overflow-y: auto;
   border: solid gray 1px;
 }
+
 
