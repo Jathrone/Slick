@@ -12,7 +12,7 @@
 #
 
 class Message < ApplicationRecord
-    validates :sender_id, :parent_type, :parent_id, :body, presence: true
+    validates :body, presence: true
     validates :parent_type, inclusion: {in: %w(Channel DirectMessage Message)}
 
     belongs_to :parent, 

@@ -1,14 +1,13 @@
 # == Schema Information
 #
-# Table name: channels
+# Table name: channel_subscribers
 #
-#  id           :bigint           not null, primary key
-#  name         :string           not null
-#  topic        :string
-#  purpose      :text
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  workspace_id :integer          not null
+#  id            :bigint           not null, primary key
+#  channel_id    :integer          not null
+#  subscriber_id :integer          not null
+#  is_muted      :boolean          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

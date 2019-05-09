@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ChannelsNavBar from "./channels_nav_bar";
 
-const workspaceNavBar = ({currentUser}) => {
+const workspaceNavBar = (props) => {
+    const {currentUser, channels} = props
 
     return (
         <nav className="workspace-nav-bar">
             <p>{currentUser.displayName}</p>
-            <ul>
-                <li><Link to="/channels/1">Channel 1</Link></li>
-                <li><Link to="/channels/2">Channel 2</Link></li>
-            </ul>
+            <ChannelsNavBar channels={channels}/>
+
         </nav>
     )
 }

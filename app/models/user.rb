@@ -33,6 +33,24 @@ class User < ApplicationRecord
         foreign_key: :sender_id,
         class_name: :Message
 
+    has_many :channel_subscriptions,
+        primary_key: :id,
+        foreign_key: :subscriber_id,
+        class_name: "ChannelSubscriber"
+
+    has_many :channels,
+        through: :channel_subscriptions,
+        source: :channel
+
+    has_many :direct_message_participations,
+        primary_key: :id,
+        foreign_key: :participant_id,
+        class_name: "DirectMessageParticipant"
+
+    has_many :direct_messages,
+        through: :direct_message_participations,
+        source: :direct_message
+
     def self.find_by_credentials(workspace_id, email, password)
         user = User.find_by(workspace_id: workspace_id, email: email)
         if user && user.is_password?(password)

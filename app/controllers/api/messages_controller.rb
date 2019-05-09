@@ -6,9 +6,9 @@ class Api::MessagesController < ApplicationController
         when "Channel"
             @chat = Channel.where(id: parent_id).includes(:messages)[0]
         when "DirectMessage"
-            @chat = DirectMessage.find_by(id: parent_id)
+            @chat = DirectMessage.where(id: parent_id).includes(:messages)[0]
         when "Message"
-            @chat = Message.find_by(id: parent_id)
+            @chat = Message.where(id: parent_id).includes(:messages)[0]
         else 
             render json: ["invalid chat type detected, chat type must be of channel, directMessage, or message"]
         end

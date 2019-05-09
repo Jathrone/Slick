@@ -12,4 +12,9 @@
 class Workspace < ApplicationRecord
     validates :creator_email, presence: true
     validates :name, presence: true, uniqueness: true
+
+    has_many :channels,
+        primary_key: :id,
+        foreign_key: :workspace_id,
+        class_name: "Channel"
 end

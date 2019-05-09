@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_211527) do
+ActiveRecord::Schema.define(version: 2019_05_09_214727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channel_subscribers", force: :cascade do |t|
+    t.integer "channel_id", null: false
+    t.integer "subscriber_id", null: false
+    t.boolean "is_muted", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_channel_subscribers_on_channel_id"
+    t.index ["subscriber_id", "channel_id"], name: "channel_subscriber_index", unique: true
+  end
 
   create_table "channels", force: :cascade do |t|
     t.string "name", null: false
@@ -23,6 +33,16 @@ ActiveRecord::Schema.define(version: 2019_05_09_211527) do
     t.datetime "updated_at", null: false
     t.integer "workspace_id", null: false
     t.index ["workspace_id"], name: "index_channels_on_workspace_id"
+  end
+
+  create_table "direct_message_participants", force: :cascade do |t|
+    t.integer "direct_message_id", null: false
+    t.integer "participant_id", null: false
+    t.boolean "is_muted", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["direct_message_id"], name: "index_direct_message_participants_on_direct_message_id"
+    t.index ["participant_id", "direct_message_id"], name: "dm_participant_index", unique: true
   end
 
   create_table "direct_messages", force: :cascade do |t|
