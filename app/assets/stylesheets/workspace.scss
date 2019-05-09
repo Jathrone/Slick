@@ -13,14 +13,12 @@ $slack-accessible-green: #007A5A;
 
 $workspace-faux-black: #1d1c1d;
 
-
-.splash-modal-button-container button {
-  font: inherit;
-}
-
-.splash-main-get-started-form input {
-  font: inherit;
-}
+.workspace-page{
+    input, button, textarea {
+    font: inherit;
+    color: inherit;
+  }
+} 
 
 .workspace-page {
   height: 100vh;
@@ -44,7 +42,6 @@ $workspace-faux-black: #1d1c1d;
 
 .workspace-active-area {
   box-sizing: border-box;
-  border: 1px solid red;
   flex: 1 1 auto;
 
   display: flex;
@@ -54,13 +51,11 @@ $workspace-faux-black: #1d1c1d;
 .workspace-active-nav-bar {
   box-sizing: border-box;
   flex: 0 0 60px;
-  border: 1px solid red;
 }
 
 .workspace-active-chat-area {
   box-sizing: border-box;
   flex: 1 1 auto;
-  border: 1px solid red;
 
   display: flex;
   flex-direction: row;
@@ -194,24 +189,6 @@ $workspace-faux-black: #1d1c1d;
   align-items: center;
 }
 
-.workpace-main-chat-timestamp-separator {
-
-  &:before, &:after{
-    content: "";
-    display: block;
-    height: 1px;
-    background-color: $workspace-border-light-gray;
-    flex: 1 0 auto;
-  }
-
-}
-
-.workpace-main-chat-timestamp-separator time {
-  font-size: 14px;
-  flex: 0 0 auto;
-  margin: 0px 10px;
-}
-
 .chat-item pre {
   font: inherit;
   font-weight: 400;
@@ -251,4 +228,56 @@ $workspace-faux-black: #1d1c1d;
 
 .chat-item-header {
   margin-top: 10px;
+}
+
+.chat-item:first-of-type {
+  padding-top: 9px;
+}
+
+.chat-item:last-of-type {
+  padding-bottom: 19px;
+}
+
+.workspace-main-chat-timestamp-bucket {
+  box-sizing: border-box;
+}
+
+.scrollable-timestamp {
+  position: sticky;
+  top: 0px;
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.scrollable-timestamp time {
+  padding: 0px 5px;
+  font-size: 14px;
+  border-radius: 10px;
+  margin: 0px 8px;
+  white-space: nowrap;
+}
+
+
+.technically-relatively {
+  position: sticky;
+  width: 100%;
+  top: 0px;
+}
+
+.scrollable-timestamp-before, .scrollable-timestamp-after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $workspace-border-light-gray;
+  
+  position: relative;
+  top: 9px;
+}
+
+.chat-item, .workspace-main-chat-timestamp-bucket {
+  overflow-y: visible;
 }

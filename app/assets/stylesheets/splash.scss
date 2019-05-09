@@ -10,6 +10,15 @@ $splash-header-gray: rgb(30, 30, 30);
 
 $slack-blue: #1264A3;
 
+
+.splash-modal-button-container button {
+  font: inherit;
+}
+
+.splash-main-get-started-form input {
+  font: inherit;
+}
+
 .splash-header a {
     text-decoration: none;
 }
