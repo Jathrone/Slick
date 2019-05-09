@@ -59,6 +59,7 @@ class ChatForm extends React.Component {
                         id="main-chat-textarea"
                         value={this.state.body}
                         onChange={this.handleChange}
+                        placeholder="Enter a message here"
                         onKeyDown={this.handleKeyDown}/>
                 </div>
             </form>

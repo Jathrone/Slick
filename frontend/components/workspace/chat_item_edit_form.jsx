@@ -6,7 +6,7 @@ class ChatItemEditForm extends React.Component {
         this.state = {
             body: this.props.message.body
         }
-        debugger;
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -38,6 +38,11 @@ class ChatItemEditForm extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.refTextArea.style.height = "1px";
+        this.refTextArea.style.height = `${Math.min(this.refTextArea.scrollHeight, 300)}px`
+    }
+
     render() {
         
         return (
@@ -51,12 +56,12 @@ class ChatItemEditForm extends React.Component {
                         onSubmit={this.handleSubmit}>
                         <textarea
                             ref={el => this.refTextArea = el}
-                            id="main-chat-textarea"
+                            id="chat-edit-textarea"
                             value={this.state.body}
                             onChange={this.handleChange}
                             onKeyDown={this.handleKeyDown} />
-                        <input type="button" value="Cancel" onClick={this.clearMessageUnderEdit}/>
-                        <input type="submit" value="Save Changes"/>
+                        <input className="chat-edit-form-cancel" type="button" value="Cancel" onClick={this.clearMessageUnderEdit}/>
+                        <input className="chat-edit-form-submit" type="submit" value="Save Changes"/>
                     </form>
                 </div>
             </li>

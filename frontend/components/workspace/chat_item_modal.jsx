@@ -26,8 +26,6 @@ const ChatItemModal = ({ modalState, closeChatItemModal, messageId, placeMessage
         <>
             <div className="chat-item-modal-child" onClick={e => e.stopPropagation()}>
                 <ul className="chat-item-actions-list">
-                    {/* <li>Edit Message</li>
-                    <li>Delete Message</li> */}
                     {chatItemActions}
                 </ul>
             </div>

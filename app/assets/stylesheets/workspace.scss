@@ -26,6 +26,7 @@ $workspace-faux-black: #1d1c1d;
   display: flex;
   flex-direction: row;
   color: $workspace-faux-black;
+
 }
 
 .workspace-nav-bar {
@@ -43,6 +44,7 @@ $workspace-faux-black: #1d1c1d;
 .workspace-active-area {
   box-sizing: border-box;
   flex: 1 1 auto;
+  max-width: calc(100% - 220px);
 
   display: flex;
   flex-direction: column;
@@ -57,10 +59,6 @@ $workspace-faux-black: #1d1c1d;
   // z-index: 2;
 }
 
-// .workspace-active-nav-bar-stretch {
-//   background: transparent;
-// }
-
 .workspace-active-nav-bar-stretch {
   box-sizing: border-box;
   position: absolute;
@@ -68,6 +66,7 @@ $workspace-faux-black: #1d1c1d;
   top: 0px;
   height: 62px;
   background-color: white;
+  z-index:2;
 }
 
 .workspace-active-chat-area {
@@ -80,6 +79,7 @@ $workspace-faux-black: #1d1c1d;
 
 .workspace-main-section {
   flex: 1 1 auto;
+  max-width: 100%;
   display: flex;
   flex-direction: column
 }
@@ -112,12 +112,13 @@ $workspace-faux-black: #1d1c1d;
 #main-chat-textarea {
   box-sizing: border-box;
   
-  width: calc(100% - 10px);
+  width: calc(100% - 15px);
   height: 44px;
   // max-height: 100%;
   // margin-bottom: 10p;
 
   border: none;
+  margin-right: 6px;
 
   resize: none;
   padding: 9px 66px 9px 5px;
@@ -165,10 +166,11 @@ $workspace-faux-black: #1d1c1d;
   }
 
   &:hover {
-    overflow-y: auto;
+    overflow-y: scroll;
     width: calc(100% - 5px);
   }
 }
+
 
 .chat-item {
   box-sizing: border-box;
@@ -193,9 +195,9 @@ $workspace-faux-black: #1d1c1d;
 }
 
 .chat-item-body {
-  flex: 1 0 auto;
-
-
+  flex: 1 1 auto;
+  // #TODO shouldn't have to do this
+  max-width: calc(100% - 95px);
   box-sizing: border-box;
 
 }
@@ -305,7 +307,7 @@ $workspace-faux-black: #1d1c1d;
   display: block;
   width: 100%;
   height: 1px;
-  background-color: red;
+  background-color: $workspace-border-light-gray;
   // background-color: $workspace-border-light-gray;
   
   position: relative;
@@ -331,25 +333,6 @@ $workspace-faux-black: #1d1c1d;
 }
 
 
-// .workspace-main-chat-index-whiteout-left {
-//   position: absolute;
-//   top: 47px;
-//   left: 0px;
-//   display: block;
-//   height: 14px;
-//   width: 100%;
-//   background-color: teal;
-// }
-
-// .workspace-main-chat-index-whiteout-right {
-//   position: absolute;
-//   top: 47px;
-//   right: 0px;
-//   display: block;
-//   height: 14px;
-//   width: 100%;
-//   background-color: teal;
-// }
 
 .chat-item-modal-button {
   display: none;
@@ -409,18 +392,82 @@ $workspace-faux-black: #1d1c1d;
     background-color: $workspace-border-light-gray;
   }
 
-  li {
+  li button{
+    display: block;
+    background-color: white;
+    border: none;
     color: $workspace-faux-black;
     line-height: 29px;
     height: 28px;
+    width: 100%;
     padding: 0px 24px;
     text-align: left;
   }
 
-  li:hover {
+  li:hover button {
     background-color: $slack-accessible-blue;
     color: white;
     cursor: pointer;
   }
 }
 
+#chat-edit-textarea {
+  box-sizing: border-box;
+  
+  width: calc(100% - 10px);
+
+  border: 1px solid $slack-accessible-blue;
+  border-radius: 4px;
+
+  resize: none;
+  padding: 9px 24px 9px 5px;
+  overflow: hidden;
+  
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: lightgrey; 
+    border-radius: 10px;
+  }
+
+  &:hover {
+    overflow-y: auto;
+    width: calc(100% - 10px);
+    padding-right: 14px;
+  }
+}
+
+input.chat-edit-form-cancel, input.chat-edit-form-submit {
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  margin: 10px 6px 6px 0px; 
+  height: 26px;
+  font-size: 14px;
+  padding: 4px 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input.chat-edit-form-cancel {
+  color: $workspace-faux-black;
+  background-color: white;
+  border: 1px solid $workspace-border-light-gray;
+}
+
+input.chat-edit-form-submit {
+  color: white;
+  background-color: $slack-accessible-green;
+  border: none;
+}
