@@ -3,14 +3,24 @@ import { closeChatItemModal } from "../../actions/chat_item_modal_actions";
 import { connect } from "react-redux";
 
 
-const ChatItemModal = ({ modalState, closeChatItemModal, messageId }) => {
+const ChatItemModal = ({ modalState, closeChatItemModal, messageId, placeMessageUnderEdit, deleteMessage }) => {
     if (modalState !== messageId) {
         return null;
     }
 
+    const handleEditClick = () => {
+        placeMessageUnderEdit(messageId);
+        closeChatItemModal();
+    }
+
+    const handleDeleteClick = () => {
+        deleteMessage();
+        closeChatItemModal();
+    }
+
     const chatItemActions = [];
-    chatItemActions.push(<li key="edit">Edit message</li>);
-    chatItemActions.push(<li key="delete">Delete this message</li>);
+    chatItemActions.push(<li key="edit"><button onClick={handleEditClick}>Edit message</button></li>);
+    chatItemActions.push(<li key="delete"><button onClick={handleDeleteClick}>Delete this message</button></li>);
 
     return (
         <>

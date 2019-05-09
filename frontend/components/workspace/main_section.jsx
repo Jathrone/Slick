@@ -20,7 +20,12 @@ class MainSection extends React.Component {
             parent_id: parentId},
             {
                 received: data => {
-                    this.props.receiveMessage(data);
+                    // #TODO add edit-specific css here
+                    if (data.type === "delete") {
+                        this.props.eraseMessage(data);
+                    } else {
+                        this.props.receiveMessage(data);
+                    }
                 }
             }
         );
@@ -55,10 +60,10 @@ class MainSection extends React.Component {
     }
  
     render () {
-        const { messages, createMessage, } = this.props
+        const { messages, createMessage, updateMessage, deleteMessage} = this.props
         return (
             <div ref={el => this.refMainChatSection = el} className="workspace-main-section">
-                <ChatIndex messages={messages}/>
+                <ChatIndex messages={messages} updateMessage={updateMessage} deleteMessage={deleteMessage}/>
                 <ChatForm createMessage={createMessage} refMainChatSection={this.refMainChatSection}/>
             </div>
         )

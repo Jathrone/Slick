@@ -21,6 +21,7 @@ class Api::MessagesController < ApplicationController
     end
 
     def create
+        @type = "create"
         @message = Message.new(message_params)
         if @message.save
             ChatChannel.broadcast_to(@message.parent, JSON.parse(render :show))
@@ -30,9 +31,24 @@ class Api::MessagesController < ApplicationController
     end
 
     def destroy
+        @type = "delete"
+        @message = Message.find_by(id: params[:id])
+        parent = @message.parent
+        if @message.destroy
+            ChatChannel.broadcast_to(parent, JSON.parse(render :show))
+        else 
+            render json: @message.errors.full_messages, status: 404 
+        end
     end
 
     def update
+        @type = "update"
+        @message = Message.find_by(id: params[:id])
+        if @message.update(message_params)
+            ChatChannel.broadcast_to(@message.parent, JSON.parse(render :show))
+        else 
+            render json: @message.errors.full_messages, status: 404 
+        end
     end
 
     private

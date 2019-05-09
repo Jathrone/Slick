@@ -34,7 +34,7 @@ class ChatItem extends React.Component {
                     {chatItemBody}
                 </div>
                 <button onClick={() => this.props.openChatItemModal(this.props.message.id)} className="chat-item-modal-button"><i className="fas fa-ellipsis-h"></i></button>
-                <ChatItemModal messageId={this.props.message.id}/>
+                <ChatItemModal placeMessageUnderEdit={this.props.placeMessageUnderEdit} deleteMessage={this.props.deleteMessage}  messageId={this.props.message.id}/>
             </li>
         )
     }

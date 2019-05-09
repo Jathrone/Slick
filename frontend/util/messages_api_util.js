@@ -17,3 +17,22 @@ export const createMessage = (senderId, parentType, parentId, body) => (
         }}
     })
 )
+
+export const updateMessage = (id, body) => (
+    $.ajax({
+        method: "patch",
+        url: `api/messages/${id}`,
+        data: {
+            message: {
+                body
+            }
+        }
+    })
+)
+
+export const deleteMessage = (id) => (
+    $.ajax({
+        method: "delete",
+        url: `api/messages/${id}`
+    })
+)

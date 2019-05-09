@@ -1,5 +1,6 @@
 import React from "react";
 import ChatItemContainer from "./chat_item_container";
+import ChatItemEditForm from "./chat_item_edit_form";
 import TimeBucket from "./time_bucket";
 
 class ChatIndex extends React.Component {
@@ -8,6 +9,20 @@ class ChatIndex extends React.Component {
         this.state = {
             messageUnderEdit: null
         }
+        this.placeMessageUnderEdit = this.placeMessageUnderEdit.bind(this);
+        this.clearMessageUnderEdit = this.clearMessageUnderEdit.bind(this);
+    }
+
+    placeMessageUnderEdit(id) {
+        this.setState( {
+            messageUnderEdit: id
+        })
+    }
+
+    clearMessageUnderEdit() {
+        this.setState({
+            messageUnderEdit: null
+        })
     }
 
     render() {
@@ -28,17 +43,17 @@ class ChatIndex extends React.Component {
                 // #TODO allow for more native human process of dates (so-many hours ago, today, yesterday)
             }
             if (this.state.messageUnderEdit === message.id) {
-                timeBucketContent.push(<div>placeholder div for messages under edit</div>)
+                timeBucketContent.push(<ChatItemEditForm message={message} updateMessage={(body)=>this.props.updateMessage(message.id, body)} clearMessageUnderEdit={this.clearMessageUnderEdit}/>)
             }
             // else if (message has replies) {
             // #TODO thread messages 
             // } 
             else if (message.senderId !== lastSenderId) {
-                timeBucketContent.push(<ChatItemContainer key={message.id} hasMessageHeader={true} message={message} />)
+                timeBucketContent.push(<ChatItemContainer placeMessageUnderEdit={this.placeMessageUnderEdit} deleteMessage={() => this.props.deleteMessage(message.id)} key={message.id} hasMessageHeader={true} message={message} />)
             } else if (!lastTimestamp || (messageTimestamp - lastTimestamp) > 1800000) {
-                timeBucketContent.push(<ChatItemContainer key={message.id} hasMessageHeader={true} message={message} />)
+                timeBucketContent.push(<ChatItemContainer placeMessageUnderEdit={this.placeMessageUnderEdit} deleteMessage={() => this.props.deleteMessage(message.id)} key={message.id} hasMessageHeader={true} message={message} />)
             } else {
-                timeBucketContent.push(<ChatItemContainer key={message.id} hasMessageHeader={false} message={message} />)
+                timeBucketContent.push(<ChatItemContainer placeMessageUnderEdit={this.placeMessageUnderEdit} deleteMessage={() => this.props.deleteMessage(message.id)} key={message.id} hasMessageHeader={false} message={message} />)
             }
             lastTimestamp = messageTimestamp;
             lastSenderId = message.senderId;
