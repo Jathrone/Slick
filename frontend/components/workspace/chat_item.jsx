@@ -1,5 +1,6 @@
 import React from "react";
 import Moment from "react-moment";
+import ChatItemModal from "./chat_item_modal";
 
 class ChatItem extends React.Component {
     constructor(props) {
@@ -32,6 +33,8 @@ class ChatItem extends React.Component {
                 <div className="chat-item-body">
                     {chatItemBody}
                 </div>
+                <button onClick={() => this.props.openChatItemModal(this.props.message.id)} className="chat-item-modal-button"><i className="fas fa-ellipsis-h"></i></button>
+                <ChatItemModal messageId={this.props.message.id}/>
             </li>
         )
     }

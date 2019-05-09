@@ -24,7 +24,15 @@ class WorkspaceActiveArea extends React.Component {
         parentId = parentId;
         return (
             <div className="workspace-active-area">
-                <div className="workspace-active-nav-bar">chatType: {parentType}, chatId: {parentId}</div>
+
+                <div className="workspace-active-nav-bar">
+                    <div className="workspace-active-nav-bar-stretch">
+                        chatType: {parentType}, chatId: {parentId}
+                    </div>
+                </div>
+
+
+
                 <div className="workspace-active-chat-area">
                     <MainSectionContainer parentType={parentType} parentId={parentId} currentUserId={this.props.currentUser.id}/>
                     {/* #TODO here goes side container */}
