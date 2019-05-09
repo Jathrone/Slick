@@ -19,7 +19,7 @@ class ChatForm extends React.Component {
     }
 
     handleSubmit() {
-        this.props.createMessage(this.state)
+        this.props.createMessage(this.state.body)
         this.setState({body: ""})
     }
 
@@ -31,16 +31,19 @@ class ChatForm extends React.Component {
     }
 
     // #TODO make this feature more responsive
+    // #TODO form bar needs to come back to 44px after clearing
     handleKeyDown(e) {
         this.onEnterPress(e);
-        e.target.style.height = "inherit";
-        e.target.style.height = `${Math.min(e.target.scrollHeight, (0.60*this.props.refMainChatSection.scrollHeight))}px`
-        console.log({
-            "target scrollHeight": e.target.scrollHeight,
-            "60% of window": (0.60 * this.props.refMainChatSection.scrollHeight)
-            })
+        if (e.target.scrollHeight < 50) {
+            e.target.style.height = 44;
+            // e.target.style.height = `${Math.min(e.target.scrollHeight, 0.5 * this.props.maxChatHeight) - 9}px`
+        } else {
+            e.target.style.height = "1px";
+            e.target.style.height = `${Math.min(e.target.scrollHeight, 0.5 * this.props.refMainChatSection.scrollHeight)}px`
+        }
+        console.log({ scrollHeight: e.target.scrollHeight,
+            "style.height": e.target.style.height})
     }
-
 
     render() {
         return(
@@ -48,10 +51,11 @@ class ChatForm extends React.Component {
                 className="main-chat-form"
                 ref={el => this.chatFormRef = el}>
                 <div className="main-chat-form-bar">
-                    <button className="main-chat-form-button">
+                    <div className="chat-form-plus-button">
                         <i className="fas fa-plus"></i>
-                    </button>
+                    </div>
                     <textarea 
+                        ref = {el => this.refTextArea = el}
                         id="main-chat-textarea"
                         value={this.state.body}
                         onChange={this.handleChange}

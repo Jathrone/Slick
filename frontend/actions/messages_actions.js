@@ -3,14 +3,14 @@ import * as messageApiUtil from "../util/messages_api_util";
 export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 
-const receiveMessages = (messages) => ({
+const receiveMessages = (payload) => ({
     type: RECEIVE_MESSAGES,
-    payload: messages
+    payload: payload
 });
 
-export const receiveMessage = (message) => ({
+export const receiveMessage = (payload) => ({
     type: RECEIVE_MESSAGE, 
-    payload: message
+    payload: payload
 });
 
 export const fetchAllMessages = (parentType, parentId) => (dispatch) => (

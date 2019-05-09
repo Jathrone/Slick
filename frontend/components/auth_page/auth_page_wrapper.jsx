@@ -8,7 +8,7 @@ import AuthErrorIndexContainer from "./auth_error_index_container";
 const AuthPageWrapper = (props) => {
 
     return (
-        <div id="page">
+        <div id="auth-page">
             <header className="auth-page-header">
                 <div className="slick-logo-div">
                     <Link to={`/`}><img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-199wkt/Slack_Mark.png?width=30" alt="slick but actually slack logo" /> <div>slick</div></Link>

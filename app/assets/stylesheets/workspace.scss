@@ -2,16 +2,37 @@ $slack-aubergine: #4A154B;
 $slack-aubergine-null: #611F69;
 $slack-aubergine-active: #7C3085;
 
+$workspace-form-border-color: #616061;
+
+$workspace-border-light-gray: #ddd;
+
+$workspace-lightest-shade-gray: #f8f8f8;
+
+$slack-accessible-blue: #1264a3;
+$slack-accessible-green: #007A5A;
+
+$workspace-faux-black: #1d1c1d;
+
+
+.splash-modal-button-container button {
+  font: inherit;
+}
+
+.splash-main-get-started-form input {
+  font: inherit;
+}
+
 .workspace-page {
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
+  color: $workspace-faux-black;
 }
 
 .workspace-nav-bar {
   box-sizing: border-box;
-  flex: 0 1 220px;
+  flex: 0 0 220px;
 
   background: $slack-aubergine;
   color: white;
@@ -32,7 +53,7 @@ $slack-aubergine-active: #7C3085;
 
 .workspace-active-nav-bar {
   box-sizing: border-box;
-  flex: 0 1 60px;
+  flex: 0 0 60px;
   border: 1px solid red;
 }
 
@@ -58,7 +79,7 @@ $slack-aubergine-active: #7C3085;
   flex: 0 0 auto;
 
   // max-height: calc( 60% + 30px);
-  padding: 10px;
+  padding: 0px 20px 22px 20px;
   
   display: flex;
   flex-direction: row;
@@ -68,33 +89,166 @@ $slack-aubergine-active: #7C3085;
 .main-chat-form-bar {
   flex: 1 1 auto;
 
-  // max-height: 100%;
-
-  // margin: 0px 20px;
+  border: 2px solid $workspace-form-border-color;
+  border-radius: 8px;
 
   display: flex;
   flex-direction: row;
+  // overflow: hidden;
 }
 
 #main-chat-textarea {
   box-sizing: border-box;
-  width: 100%;
+  
+  width: calc(100% - 10px);
+  height: 44px;
   // max-height: 100%;
   // margin-bottom: 10p;
 
+  border: none;
+
   resize: none;
-  padding: 0;
+  padding: 9px 66px 9px 5px;
 }
 
+.chat-form-plus-button {
+  box-sizing: border-box;
+  width: 44px;
+  
+  border-right: 2px solid $workspace-form-border-color;
+  color: $workspace-form-border-color;
+  font-size: 22px;
+  padding: 10px;
+
+  display:flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
 // FORM HELL ENDS HERE
 
 .workspace-main-chat-list {
   box-sizing: border-box;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
+  width: calc(100% - 15px);
 
-  overflow-y: auto;
-  border: solid gray 1px;
+  overflow-y: hidden;
 }
 
+/* width */
+.workspace-main-chat-list, #main-chat-textarea {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: lightgrey; 
+    border-radius: 10px;
+  }
 
+  &:hover {
+    overflow-y: auto;
+    width: calc(100% - 5px);
+  }
+}
+
+.chat-item {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-item-gutter { 
+  flex: 0 0 70px;
+  margin-right: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  box-sizing: border-box;
+
+}
+
+.chat-item-body {
+  flex: 1 0 auto;
+
+
+  box-sizing: border-box;
+
+}
+
+.workpace-main-chat-timestamp-separator {
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.workpace-main-chat-timestamp-separator {
+
+  &:before, &:after{
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: $workspace-border-light-gray;
+    flex: 1 0 auto;
+  }
+
+}
+
+.workpace-main-chat-timestamp-separator time {
+  font-size: 14px;
+  flex: 0 0 auto;
+  margin: 0px 10px;
+}
+
+.chat-item pre {
+  font: inherit;
+  font-weight: 400;
+  font-size: 15px;
+
+  line-height: 22px;
+}
+
+.chat-item time {
+  font-size: 12px;
+  color: $workspace-form-border-color;
+}
+
+.chat-item .chat-item-gutter time {
+  display: none;
+}
+
+.chat-item:hover {
+  background: $workspace-lightest-shade-gray;
+    .chat-item-gutter time {
+      display: inline;
+    }
+}
+
+.chat-item .chat-item-gutter i {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 4px;
+  background-color: $slack-accessible-green;
+  font-size: 24px;
+  color: white;
+}
+
+.chat-item-header {
+  margin-top: 10px;
+}

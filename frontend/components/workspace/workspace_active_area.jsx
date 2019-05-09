@@ -1,26 +1,37 @@
 import React from "react";
 import MainSectionContainer from "./main_section_container";
 
-const WorkspaceActiveArea = (props) => {
-    const reChannels = /channels/;
-    const reDirectMessages = /direct_messages/;
-    let parentType;
-    if (reChannels.test(props.match.url)) {
-        parentType = "Channel";
-    } else if (reDirectMessages.test(props.match.url)) {
-        parentType = "DirectMessage";
+class WorkspaceActiveArea extends React.Component {
+    constructor(props) {
+        super(props);
     }
-    let parentId = parseInt(props.match.params.parentId);
 
-    return (
-        <div className="workspace-active-area">
-            <div className="workspace-active-nav-bar">chatType: {parentType}, chatId: {parentId}</div>
-            <div className="workspace-active-chat-area">
-                <MainSectionContainer parentType={parentType} parentId={parentId} currentUserId={props.currentUser.id}/>
-                {/* #TODO here goes side container */}
+    // #TODO change back to functional component if cleanup doesn't require componentdidupdate
+
+    render() {
+
+        const reChannels = /channels/;
+        const reDirectMessages = /direct_messages/;
+        let parentType;
+        if (reChannels.test(this.props.match.url)) {
+            parentType = "Channel";
+        } else if (reDirectMessages.test(this.props.match.url)) {
+            parentType = "DirectMessage";
+        }
+        let parentId = parseInt(this.props.match.params.parentId);
+
+        parentType = parentType;
+        parentId = parentId;
+        return (
+            <div className="workspace-active-area">
+                <div className="workspace-active-nav-bar">chatType: {parentType}, chatId: {parentId}</div>
+                <div className="workspace-active-chat-area">
+                    <MainSectionContainer parentType={parentType} parentId={parentId} currentUserId={this.props.currentUser.id}/>
+                    {/* #TODO here goes side container */}
+                </div>
             </div>
-        </div>
-    )
-}
+        )
+    }
+};
 
 export default WorkspaceActiveArea;

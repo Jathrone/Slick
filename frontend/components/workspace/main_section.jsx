@@ -55,11 +55,11 @@ class MainSection extends React.Component {
     }
  
     render () {
-        const { messages, createMessage, createKeypressSubmit } = this.props
+        const { messages, createMessage, } = this.props
         return (
             <div ref={el => this.refMainChatSection = el} className="workspace-main-section">
                 <ChatIndex messages={messages}/>
-                <ChatForm createMessage={({body}) => createMessage(body)} refMainChatSection={this.refMainChatSection}/>
+                <ChatForm createMessage={createMessage} refMainChatSection={this.refMainChatSection}/>
             </div>
         )
     }
