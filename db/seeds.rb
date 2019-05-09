@@ -9,7 +9,8 @@
 
 Workspace.delete_all
 User.delete_all
+Channel.delete_all
 Workspace.create({creator_email: "user@demo.com", name: "Demo-workspace"})
 User.create({workspace_id: 1, display_name: "DemoUser", email: "user@demo.com", password: "password"})
-Channel.create({creator_id: 1, name: "general"})
-Channel.create({creator_id: 1, name: "announcements"})
+Channel.create({workspace_id: 1, name: "general"})
+Channel.create({workspace_id: 1, name: "announcements"})

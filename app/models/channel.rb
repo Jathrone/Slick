@@ -12,7 +12,7 @@
 #
 
 class Channel < ApplicationRecord
-    validates :creator_id, :name, presence: true
+    validates :name, presence: true
 
     has_many :messages, as: :parent, 
         class_name: "Message"
