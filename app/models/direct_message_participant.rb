@@ -17,12 +17,14 @@ class DirectMessageParticipant < ApplicationRecord
     belongs_to :participant,
         primary_key: :id,
         foreign_key: :participant_id,
-        class_name: "User"
+        class_name: "User",
+        inverse_of: :direct_message_participations
 
     belongs_to :direct_message,
         primary_key: :id,
         foreign_key: :direct_message_id,
-        class_name: "DirectMessage"
+        class_name: "DirectMessage",
+        inverse_of: :direct_message_participations
 
 
     after_initialize :ensure_not_muted
