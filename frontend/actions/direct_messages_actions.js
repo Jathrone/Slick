@@ -21,5 +21,5 @@ export const fetchRelevantDirectMessages = (userId) => (dispatch) => (
 
 export const createDirectMessage = (userIds) => (dispatch) => (
     directMessagesApiUtil.createDirectMessage(userIds)
-        .then(res => dispatch(receiveDirectMessage(res)))
+        .then(res => (dispatch(receiveDirectMessage(res))))
 )

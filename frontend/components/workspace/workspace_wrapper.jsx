@@ -78,6 +78,7 @@ class WorkspaceWrapper extends React.Component {
             <AddDirectMessageForm 
                 allUsers={allUsers}
                 directMessages={directMessages}
+                currentUserId={currentUser.id}
                 createDirectMessage={(userIds) => (createDirectMessage(userIds.concat(currentUser.id)))}
                 handleResetActiveArea={this.handleResetActiveArea}/>
         )

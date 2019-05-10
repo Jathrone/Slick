@@ -15,14 +15,6 @@ class AddDirectMessageForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.directMessages.forEach((directMessage) => {
-            debugger;
-            if (this.state.users.sort() === directMessage.participants.map((participant) => participant.id)) {
-                {this.setState({
-                    redirectid: directMessage.id
-                })}
-            }
-        })
         this.props.createDirectMessage(this.state.users)
             .then(res => {
                 this.setState({
@@ -69,7 +61,7 @@ class AddDirectMessageForm extends React.Component {
 
         if (this.state.redirectId) {
             return (
-                <Redirect to={`/channels/${this.state.redirectId}`} />
+                <Redirect to={`/direct_messages/${this.state.redirectId}`} />
             )
         } else {
             return (

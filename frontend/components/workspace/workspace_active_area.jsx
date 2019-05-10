@@ -20,7 +20,8 @@ class WorkspaceActiveArea extends React.Component {
             displayInfo= "#" + this.props.channels[parentId].name;
         } else if (reDirectMessages.test(this.props.match.url)) {
             parentType = "DirectMessage";
-            displayInfo = this.props.directMessages[parentId].participants.map((participant) => participant ? participant.displayName : "").join(", ")
+            debugger;
+            displayInfo = this.props.directMessages.filter((directMessage)=> (directMessage.id === parentId))[0].participants.map((participant) => participant ? participant.displayName : "").join(", ")
         }
 
         parentType = parentType;
