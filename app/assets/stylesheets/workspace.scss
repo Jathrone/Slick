@@ -502,7 +502,9 @@ input.chat-edit-form-submit {
   }
 
   li a {
+    display: block;
     text-decoration: none;
+    width: 100%;
   }
 
 }
@@ -852,5 +854,21 @@ input.chat-edit-form-submit {
         cursor: pointer;
       }
     }
+  }
+}
+
+.workspace-active-nav-bar-stretch {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: 1px solid $workspace-border-light-gray;
+
+  .display-info {
+    
+    font-size: 20px;
+    font-weight: 900;
+
+    padding: 8px 0px 0px 20px;
   }
 }

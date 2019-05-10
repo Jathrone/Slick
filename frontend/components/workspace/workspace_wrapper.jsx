@@ -62,7 +62,7 @@ class WorkspaceWrapper extends React.Component {
                         handleAddDirectMessage={this.handleAddDirectMessage}/>
                     <Route 
                         path={["/channels/:parentId", "/direct_messages/:parentId"]} 
-                        render={(props) => <WorkspaceActiveArea {...props} currentUser={currentUser}/>}
+                        render={(props) => <WorkspaceActiveArea {...props} currentUser={currentUser} channels={channels} directMessages={directMessages}/>}
                     /> 
                 </div>
             )

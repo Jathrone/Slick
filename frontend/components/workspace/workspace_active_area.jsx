@@ -13,21 +13,26 @@ class WorkspaceActiveArea extends React.Component {
         const reChannels = /channels/;
         const reDirectMessages = /direct_messages/;
         let parentType;
+        let displayInfo;
+        let parentId = parseInt(this.props.match.params.parentId);
         if (reChannels.test(this.props.match.url)) {
             parentType = "Channel";
+            displayInfo= "#" + this.props.channels[parentId].name;
         } else if (reDirectMessages.test(this.props.match.url)) {
             parentType = "DirectMessage";
+            displayInfo = this.props.directMessages[parentId].participants.map((participant) => participant ? participant.displayName : "").join(", ")
         }
-        let parentId = parseInt(this.props.match.params.parentId);
 
         parentType = parentType;
         parentId = parentId;
+
+        
         return (
             <div className="workspace-active-area">
 
                 <div className="workspace-active-nav-bar">
                     <div className="workspace-active-nav-bar-stretch">
-                        chatType: {parentType}, chatId: {parentId}
+                        <div className="display-info">{displayInfo}</div>
                     </div>
                 </div>
 
