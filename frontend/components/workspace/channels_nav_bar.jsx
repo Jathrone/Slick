@@ -6,16 +6,16 @@ const ChannelsNavBar= ({channels, handleAddChannel}) => {
     const channelsIndex = [];
     channels.forEach((channel) => {
         channelsIndex.push(
-            <li key={channel.id}><Link to={`/channels/${channel.id}`}>{channel.name}</Link></li>
+            <li key={channel.id}><Link to={`/channels/${channel.id}`}><i className="fas fa-hashtag"></i> {channel.name}</Link></li>
         )
     })
     return (
-        <div>
+        <div className="channels-nav-bar">
             <div>Channels</div>
-            <ul>
+            <ul className="channels-index">
                 {channelsIndex}
             </ul>
-            <button onClick={handleAddChannel}>Add a channel</button>
+            <button onClick={handleAddChannel}><i className="fas fa-plus"></i> Add a channel</button>
         </div>
     )
 }

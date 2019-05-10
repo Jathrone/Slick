@@ -49,10 +49,10 @@ class AddDirectMessageForm extends React.Component {
         this.props.allUsers.forEach((user) => {
 
             if (this.state.users.includes(user.id)) {
-                selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName}</button></li>)
+                selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>)
             } else {
                 userIndex.push(
-                    <li key={user.id}><button onClick={() => this.handleAddUser(user.id)}>{user.displayName}</button></li>
+                    <li key={user.id}><button onClick={() => this.handleAddUser(user.id)}><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
                 )
             }
         })
@@ -65,24 +65,32 @@ class AddDirectMessageForm extends React.Component {
             )
         } else {
             return (
-                <>
-                    <h1>Direct Messages</h1>
-                    <ul>
-                        { selectedUsers }
-                    </ul>
-                    <br/>
-                    <ul>
-                        {userIndex}
-                    </ul>
-                    <button
-                        type="submit"
-                        value="Go"
-                        onClick={this.handleSubmit}>Go</button>
-                    <button
+                <div className="add-direct-message-page">
+                    <div className="escape-div">
+                        <button
                         type="input"
                         value="ESC"
-                        onClick={this.props.handleResetActiveArea}>ESC</button>
-                </>
+                        onClick={this.props.handleResetActiveArea}>
+                        <i className="fas fa-times"></i>ESC</button>
+                    </div>
+                    <div className="add-direct-message-form">
+                        <h1 className="add-direct-message-header">Direct Messages</h1>
+                        <div className="selected-users-bar">
+                            <ul className="selected-users">
+                                { selectedUsers }
+                            </ul>
+                            <button
+                                type="submit"
+                                value="Go"
+                                onClick={this.handleSubmit}>Go</button>
+                        </div>
+                        <br/>
+                        <ul className="all-users">
+                            {userIndex}
+                        </ul>
+
+                    </div>
+                </div>
             )
         }
     }

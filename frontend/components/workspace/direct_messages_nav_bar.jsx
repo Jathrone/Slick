@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 const DirectMessagesNavBar = ({directMessages, handleAddDirectMessage}) => {
     const directMessagesIndex =[];
     directMessages.forEach((directMessage) => {
-        const displayText = directMessage.participants.map((participant)=> participant ? participant.displayName : "").join(",")
+        let displayText = directMessage.participants.map((participant)=> participant ? participant.displayName : "").join(",")
+        displayText = ((displayText.length < 20) ? displayText : displayText.slice(0, 15) + "...")
         directMessagesIndex.push(
-            <li key={directMessage.id}><Link to={`/direct_messages/${directMessage.id}`}>{displayText}</Link></li>
+            <li key={directMessage.id}><Link to={`/direct_messages/${directMessage.id}`}><i className="far fa-circle"></i> {displayText}</Link></li>
         )
     })
 
     return (
-        <div>
-            <div>Direct Messages</div>
-            <button onClick={handleAddDirectMessage}><i className="fas fa-plus"></i></button>
-            <ul>
+        <div className="direct-messages-nav-bar">
+            <div>Direct Messages <button onClick={handleAddDirectMessage}><i className="fas fa-plus"></i></button></div>
+            <ul className="direct-messages-index">
                 {directMessagesIndex}
             </ul>
         </div>
