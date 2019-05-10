@@ -23,4 +23,11 @@ class DirectMessageParticipant < ApplicationRecord
         primary_key: :id,
         foreign_key: :direct_message_id,
         class_name: "DirectMessage"
+
+
+    after_initialize :ensure_not_muted
+
+    def ensure_not_muted
+        self.is_muted ||= false
+    end
 end

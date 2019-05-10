@@ -17,4 +17,9 @@ class Workspace < ApplicationRecord
         primary_key: :id,
         foreign_key: :workspace_id,
         class_name: "Channel"
+
+    has_many :users,
+        primary_key: :id,
+        foreign_key: :workspace_id,
+        class_name: "User"
 end

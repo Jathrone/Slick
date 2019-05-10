@@ -35,6 +35,15 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def index 
+        @users = User.where(workspace_id: params[:workspace_id])
+        if @users 
+            render :index 
+        else
+            render json: ["users not found"], status: 404 
+        end
+    end
+
     #TODO destroy?
 
     private

@@ -14,7 +14,7 @@ class Api::ChannelsController < ApplicationController
         if @channel.save 
             render :show 
         else 
-            render json: @channel.errors.full_messages, status: 200
+            render json: @channel.errors.full_messages, status: 404
         end
     end
 
