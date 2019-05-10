@@ -15,10 +15,12 @@ class DirectMessage < ApplicationRecord
     has_many :direct_message_participations,
         primary_key: :id,
         foreign_key: :direct_message_id,
-        class_name: "DirectMessageParticipant"
+        class_name: "DirectMessageParticipant",
+        optional: true
 
     has_many :participants,
         through: :direct_message_participations,
-        source: :participant
+        source: :participant,
+        optional: true
     
 end
