@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ChannelsNavBar= ({channels}) => {
+const ChannelsNavBar= ({channels, handleAddChannel}) => {
     
     const channelsIndex = [];
     channels.forEach((channel) => {
@@ -15,6 +15,7 @@ const ChannelsNavBar= ({channels}) => {
             <ul>
                 {channelsIndex}
             </ul>
+            <button onClick={handleAddChannel}>Add a channel</button>
         </div>
     )
 }

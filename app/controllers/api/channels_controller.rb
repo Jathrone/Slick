@@ -10,6 +10,16 @@ class Api::ChannelsController < ApplicationController
     end
 
     def create
+        @channel = Channel.new(channel_params)
+        if @channel.save 
+            render :show 
+        else 
+            render json: @channel.errors.full_messages, status: 200
+        end
+    end
 
+    private
+    def channel_params
+        params.require(:channel).permit(:name, :topic, :purpose, :workspace_id)
     end
 end

@@ -5,3 +5,15 @@ export const fetchRelevantChannels = (workspaceId) => (
     })
 )
 
+export const createChannel = (name, workspaceId, topic, purpose) => (
+    $.ajax({
+        method: "post",
+        url: "api/channels",
+        data: {channel: {
+            name, 
+            topic,
+            purpose,
+            workspace_id: workspaceId
+        }}
+    })
+)
