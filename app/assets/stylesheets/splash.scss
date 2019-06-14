@@ -318,7 +318,7 @@ $slack-blue: #1264A3;
 
 .splash-demo-button {
     color: #fff;
-
+    font: inherit;
     background: $slack-accessible-green;
     box-shadow: none;
     cursor: pointer;
