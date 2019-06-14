@@ -44,32 +44,57 @@ class AddDirectMessageForm extends React.Component {
 
 
     render() {
-        const userIndex = [];
+
         const directMessageIndex = [];
+        const userIndex = [];
         const selectedUsers = [];
-        this.props.allUsers.forEach((user) => {
 
-            if (this.state.users.includes(user.id)) {
-                selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>)
-            } else {
-                userIndex.push(
-                    <li key={user.id}><button onClick={() => this.handleAddUser(user.id)}><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
-                )
-            }
-        });
+        if (this.state.users.length === 0) {
+            let displayedUsers = [];
 
-        this.props.directMessages.forEach((directMessage) => {
-            let participantNames = [];
-            directMessage.participants.forEach((participant) => {
-                participantNames.push(participant.displayName);
-            })
-            directMessageIndex.push(
-                <li key={`dm-${directMessage.id}`}>
-                    <div>{directMessage.participants.length}</div>
-                    {participantNames}
-                </li>
-            ) 
-        });
+            this.props.directMessages.forEach((directMessage) => {
+                let participantNames = [];
+                let participantIds = [];
+    
+                directMessage.participants.forEach((participant) => {
+                    participantNames.push(participant.displayName);
+                    participantIds.push(participant.id);
+                })
+
+                if (directMessage.participants.length === 1) {
+                    displayedUsers = displayedUsers.concat(directMessage.participants[0].id);
+                }
+    
+                directMessageIndex.push(
+                    <li key={`dm-${directMessage.id}`}>
+                        <button onClick={() => this.handleAddUser(participantIds)}>
+                            <div>{directMessage.participants.length}</div>
+                            {participantNames.join(", ")}
+                        </button>
+                    </li>
+                ) 
+            });
+
+            this.props.allUsers.forEach((user) => {
+                if (!displayedUsers.includes(user.id)) {
+                    userIndex.push(
+                        <li key={user.id}><button onClick={() => this.handleAddUser(user.id)}><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
+                    );
+                }
+            });
+        } else {
+            this.props.allUsers.forEach((user) => {
+    
+                if (this.state.users.includes(user.id)) {
+                    selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
+                } else {
+                    userIndex.push(
+                        <li key={user.id}><button onClick={() => this.handleAddUser(user.id)}><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
+                    );
+                }
+            });
+        }
+
 
 
 
@@ -77,7 +102,7 @@ class AddDirectMessageForm extends React.Component {
             return (
                 <Redirect to={`/direct_messages/${this.state.redirectId}`} />
             )
-        } else {
+        } else if (selectedUsers.length > 0) {
             return (
                 <div className="add-direct-message-page">
                     <div className="escape-div">
@@ -99,6 +124,35 @@ class AddDirectMessageForm extends React.Component {
                                 onClick={this.handleSubmit}>Go</button>
                         </div>
                         <br/>
+                        <ul className="all-users">
+                            {userIndex}
+                        </ul>
+
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="add-direct-message-page">
+                    <div className="escape-div">
+                        <button
+                            type="input"
+                            value="ESC"
+                            onClick={this.props.handleResetActiveArea}>
+                            <i className="fas fa-times"></i>ESC</button>
+                    </div>
+                    <div className="add-direct-message-form">
+                        <h1 className="add-direct-message-header">Direct Messages</h1>
+                        <div className="selected-users-bar">
+                            <ul className="selected-users">
+                                {selectedUsers}
+                            </ul>
+                            <button
+                                type="submit"
+                                value="Go"
+                                onClick={this.handleSubmit}>Go</button>
+                        </div>
+                        <br />
                         <ul className="all-users">
                             {directMessageIndex}
                             {userIndex}
