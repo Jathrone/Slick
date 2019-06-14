@@ -10,7 +10,7 @@ class Api::DirectMessagesController < ApplicationController
     end
 
     def index 
-        @direct_messages = DirectMessage.joins(:participants).where("users.id = ?", params[:user_id])
+        @direct_messages = DirectMessage.joins(:participants).where("users.id = ?", current_user.id)
         if @direct_messages 
             render :index, status: 200
         else 

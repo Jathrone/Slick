@@ -45,6 +45,7 @@ class AddDirectMessageForm extends React.Component {
 
     render() {
         const userIndex = [];
+        const directMessageIndex = [];
         const selectedUsers = [];
         this.props.allUsers.forEach((user) => {
 
@@ -55,7 +56,20 @@ class AddDirectMessageForm extends React.Component {
                     <li key={user.id}><button onClick={() => this.handleAddUser(user.id)}><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
                 )
             }
-        })
+        });
+
+        this.props.directMessages.forEach((directMessage) => {
+            let participantNames = [];
+            directMessage.participants.forEach((participant) => {
+                participantNames.push(participant.displayName);
+            })
+            directMessageIndex.push(
+                <li key={`dm-${directMessage.id}`}>
+                    <div>{directMessage.participants.length}</div>
+                    {participantNames}
+                </li>
+            ) 
+        });
 
 
 
@@ -86,6 +100,7 @@ class AddDirectMessageForm extends React.Component {
                         </div>
                         <br/>
                         <ul className="all-users">
+                            {directMessageIndex}
                             {userIndex}
                         </ul>
 

@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     fetchRelevantChannels: (workspaceId) => dispatch(fetchRelevantChannels(workspaceId)),
     createChannel: (name, topic, purpose, workspace_id) => dispatch(createChannel(name, topic, purpose, workspace_id)),
-    fetchRelevantDirectMessages: (currentUserId) => dispatch(fetchRelevantDirectMessages(currentUserId)),
+    fetchRelevantDirectMessages: () => dispatch(fetchRelevantDirectMessages()),
     fetchRelevantUsers: (workspaceId) => dispatch(fetchRelevantUsers(workspaceId)),
     createDirectMessage: (userIds) => dispatch(createDirectMessage(userIds))
 })

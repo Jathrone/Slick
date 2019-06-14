@@ -14,8 +14,8 @@ const receiveDirectMessage = (directMessage) => ({
     directMessage
 });
 
-export const fetchRelevantDirectMessages = (userId) => (dispatch) => (
-    directMessagesApiUtil.fetchRelevantDirectMessages(userId)
+export const fetchRelevantDirectMessages = () => (dispatch) => (
+    directMessagesApiUtil.fetchRelevantDirectMessages()
         .then(res => dispatch(receiveDirectMessages(res)))
 );
 
