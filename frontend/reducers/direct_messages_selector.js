@@ -1,8 +1,9 @@
 export const getDirectMessages = (state) => {
     const directMessages = Object.values(state.entities.directMessages)
-    return (directMessages.map((({id, participantIds}) => {
+    return (directMessages.map((({id, updatedAt, participantIds}) => {
         const usersArray = participantIds.map((userId) => (state.entities.users[userId]))
-        return {id: id,
+        return {id,
+            updatedAt,
         participants: usersArray}
     })))
 };

@@ -6,7 +6,8 @@ direct_message.participants.each do |participant|
 end
 
 json.id direct_message.id
-
+json.createdAt direct_message.created_at
+json.updatedAt direct_message.updated_at
 json.participantIds do 
     json.array! participant_ids
 end

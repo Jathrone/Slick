@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "react-moment";
 import { Redirect } from "react-router-dom";
 
 class AddDirectMessageForm extends React.Component {
@@ -80,8 +81,12 @@ class AddDirectMessageForm extends React.Component {
             displayIndex = userIndex;
         } else if (this.state.users.length === 0) {
             let displayedUsers = [];
-
-            this.props.directMessages.forEach((directMessage) => {
+            const sortedDirectMessages = this.props.directMessages.sort(function compare(a, b) {
+                const dateA = new Date(a.updatedAt);
+                const dateB = new Date(b.updatedAt);
+                return dateB - dateA;
+            })
+            sortedDirectMessages.forEach((directMessage) => {
                 let participantNames = [];
                 let participantIds = [];
     
@@ -94,15 +99,21 @@ class AddDirectMessageForm extends React.Component {
                 if (directMessage.participants.length === 1) {
                     displayedUsers = displayedUsers.concat(directMessage.participants[0].id);
                 } else {
-                    directMessageSizeDiv.push( <div className="direct-message-size">{directMessage.participants.length}</div> );
+                    directMessageSizeDiv.push( <div key="direct-message-size" className="direct-message-size">{directMessage.participants.length}</div> );
                 }
+                const directMessageTimestamp = new Date(directMessage.updatedAt);
     
                 directMessageIndex.push(
                     <li key={`dm-${directMessage.id}`}>
                         <button className="direct-message-option" onClick={() => this.handleAddUser(participantIds)}>
-                            <i key="icon" className="fas fa-th-large"></i>
-                            {directMessageSizeDiv}
-                            {participantNames.join(", ")}
+                            <div className='user-item-info'>
+                                <i key="icon" className="fas fa-th-large"></i>
+                                {directMessageSizeDiv}
+                                {participantNames.join(", ")}
+                            </div>
+                            <div className='user-item-timestamp'>
+                                <Moment fromNow>{directMessageTimestamp}</Moment>
+                            </div>
                         </button>
                     </li>
                 ) 
@@ -168,6 +179,7 @@ class AddDirectMessageForm extends React.Component {
                         </div>
                         <br/>
                         <ul className="all-users">
+                            
                             {displayIndex}
                         </ul>
 
