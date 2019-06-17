@@ -69,13 +69,14 @@ export const activateSession = (userId) => (dispatch) => (
 )
 
 // #TODO remember to update demoUser often! when database changes!
-const demoUser = {workspace_id: 1, email: "user@demo.com", password: "password"}
+const demoUser = {workspace_id: 4, email: "user@demo.com", password: "password"}
 
 
 // #TODO modify signInDemoUser to take in a getState and eliminate unnecessary fetchWorkspaces
 export const signInDemoUser = () => (dispatch) => {
-    return sessionApiUtil.login(demoUser)
+    return (sessionApiUtil.login(demoUser)
         .then(res => {
+            // dispatch(fetchWorkspace(res.user.workspaceId));
             return dispatch(receiveCurrentUser(res))
         },
             err => {
@@ -90,4 +91,5 @@ export const signInDemoUser = () => (dispatch) => {
             err => {
                 return dispatch(receiveSessionErrors(err))
             })
+    )
 }

@@ -5,11 +5,13 @@ import DirectMessagesNavBar from "./direct_messages_nav_bar";
 
 const workspaceNavBar = (props) => {
     const {currentUser, currentWorkspace, channels, handleAddChannel, directMessages, handleAddDirectMessage} = props
+    const tempDiv = currentWorkspace ? <h1 className="current-workspace-name">{currentWorkspace.name}</h1> : <h1 className="current-workspace-name">can't find workspace</h1>
     return (
         <nav className="workspace-nav-bar">
             {/* <p>{currentUser.displayName}</p> */}
             <div className="current-session-info">
-                <h1 className="current-workspace-name">{currentWorkspace.name}</h1>
+                {/* <h1 className="current-workspace-name">{currentWorkspace.name}</h1> */}
+                { tempDiv }
                 <h2 className="current-user-name"><i className="far fa-circle"></i> {currentUser.displayName}</h2>
             </div>
 

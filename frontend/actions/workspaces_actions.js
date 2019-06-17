@@ -17,11 +17,12 @@ export const createWorkspace = (workspace) => (dispatch) => (
 )
 
 // #TODO considering the use case of fetchWorkspace, is receiveSessionErrors a fitting catch error?
-export const fetchWorkspace = (workspaceId) => (dispatch) => (
-    workspacesApiUtil.fetchWorkspace(workspaceId)
+export const fetchWorkspace = (workspaceId) => (dispatch) => {
+    return (workspacesApiUtil.fetchWorkspace(workspaceId)
         .then(res => dispatch(receiveWorkspace(res)),
         err => dispatch(receiveSessionErrors(err)))
-)
+    )
+};
 
 // #TDDO look up whether it's prudent to return res at then end of .then
 export const fetchWorkspaceByName = (workspaceName) => (dispatch) => (
