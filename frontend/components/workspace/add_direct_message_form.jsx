@@ -90,14 +90,18 @@ class AddDirectMessageForm extends React.Component {
                     participantIds.push(participant.id);
                 })
 
+                const directMessageSizeDiv = []
                 if (directMessage.participants.length === 1) {
                     displayedUsers = displayedUsers.concat(directMessage.participants[0].id);
+                } else {
+                    directMessageSizeDiv.push( <div className="direct-message-size">{directMessage.participants.length}</div> );
                 }
     
                 directMessageIndex.push(
                     <li key={`dm-${directMessage.id}`}>
-                        <button onClick={() => this.handleAddUser(participantIds)}>
-                            <div>{directMessage.participants.length}</div>
+                        <button className="direct-message-option" onClick={() => this.handleAddUser(participantIds)}>
+                            <i key="icon" className="fas fa-th-large"></i>
+                            {directMessageSizeDiv}
                             {participantNames.join(", ")}
                         </button>
                     </li>
