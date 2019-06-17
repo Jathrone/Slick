@@ -36,12 +36,14 @@ class AddDirectMessageForm extends React.Component {
 
     handleAddUser(userId){
         this.setState({
+            searchText: "",
             users: this.state.users.concat(userId)
         })
     }
 
     handleRemoveUser(userId) {
         this.setState({
+            searchText: "",
             users: this.state.users.filter((id) => (id !== userId))
         })
     }
@@ -64,22 +66,32 @@ class AddDirectMessageForm extends React.Component {
         const directMessageIndex = [];
         const userIndex = [];
         const selectedUsers = [];
+        let hintText;
+        let hintClass;
 
         if (this.state.searchText) {
+            hintText = "You can search users by username";
+            hintClass = "hint hint-top";
             this.props.allUsers.forEach((user) => {
                 if (this.state.users.includes(user.id)) {
                     selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
-                    userIndex.push(
-                        <li key={user.id}><button><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
-                    );
-                } else if (user.displayName.toLowerCase().includes(this.state.searchText.toLowerCase())) {
-                    userIndex.push(
-                        <li key={user.id}><button onClick={() => this.handleAddUser(user.id)}><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
-                    );
+                }
+                if (user.displayName.toLowerCase().includes(this.state.searchText.toLowerCase())) {
+                    if (this.state.users.includes(user.id)) {
+                        userIndex.push(
+                            <li key={user.id}><button className="dummy-button"><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
+                        );
+                    } else {
+                        userIndex.push(
+                            <li key={user.id}><button onClick={() => this.handleAddUser(user.id)}><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
+                        );
+                    }
                 }
             });
             displayIndex = userIndex;
         } else if (this.state.users.length === 0) {
+            hintText = "Recent conversations"
+            hintClass = "hint hint-bottom";
             let displayedUsers = [];
             const sortedDirectMessages = this.props.directMessages.sort(function compare(a, b) {
                 const dateA = new Date(a.updatedAt);
@@ -127,13 +139,24 @@ class AddDirectMessageForm extends React.Component {
                 }
             });
             displayIndex = directMessageIndex.concat(userIndex);
+        } else if (this.state.users.length >= 8) {
+            hintText = `You have reached the maximum number of participants`
+            hintClass = "hint hint-top";
+            this.props.allUsers.forEach((user) => {
+
+                if (this.state.users.includes(user.id)) {
+                    selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
+                } 
+            });
         } else {
+            hintText = `You can add ${Math.round(8 - this.state.users.length)} more people`
+            hintClass = "hint hint-top";
             this.props.allUsers.forEach((user) => {
     
                 if (this.state.users.includes(user.id)) {
                     selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
                     userIndex.push(
-                        <li key={user.id}><button><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
+                        <li key={user.id}><button className="dummy-button"><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
                     );
                 } else {
                     userIndex.push(
@@ -177,9 +200,10 @@ class AddDirectMessageForm extends React.Component {
                                 value="Go"
                                 onClick={this.handleSubmit}>Go</button>
                         </div>
-                        <br/>
+                        <div className={hintClass}>
+                            {hintText}
+                        </div>
                         <ul className="all-users">
-                            
                             {displayIndex}
                         </ul>
 
