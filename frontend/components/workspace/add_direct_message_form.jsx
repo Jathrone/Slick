@@ -17,14 +17,42 @@ class AddDirectMessageForm extends React.Component {
         this.handleFocus = this.handleFocus.bind(this);
     }
 
+    
+
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createDirectMessage(this.state.users)
-            .then(res => {
-                this.setState({
-                    redirectId: res.directMessage.id
-                })
+        const newParticipants = this.state.users.sort();
+        const compare = function (a, b) {
+            if (a.length !== b.length) {
+                return false;
+            }
+            a.forEach((eleA, i) => {
+                if (eleA !== b[i]) {
+                    return false;
+                }
             })
+            return true;
+        }
+        let shouldReturn=false;
+        this.props.directMessages.forEach(dm => {
+            const participants = dm.participants.map(user => user.id).sort();
+            if (compare(participants, newParticipants)) {
+                this.setState({
+                    redirectId: dm.id
+                })
+                shouldReturn=true;
+            }
+        })
+        if (shouldReturn) {
+            return true;
+        } else {
+            this.props.createDirectMessage(this.state.users)
+                .then(res => {
+                    this.setState({
+                        redirectId: res.directMessage.id
+                    })
+                })
+        }
     }
 
 
