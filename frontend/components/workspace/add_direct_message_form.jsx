@@ -26,12 +26,13 @@ class AddDirectMessageForm extends React.Component {
             if (a.length !== b.length) {
                 return false;
             }
+            let returnValue = true;
             a.forEach((eleA, i) => {
                 if (eleA !== b[i]) {
-                    return false;
+                    returnValue = false;
                 }
             })
-            return true;
+            return returnValue;
         }
         let shouldReturn=false;
         this.props.directMessages.forEach(dm => {
