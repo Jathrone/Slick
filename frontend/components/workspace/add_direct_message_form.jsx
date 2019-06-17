@@ -65,16 +65,16 @@ class AddDirectMessageForm extends React.Component {
         let displayIndex = [];
         const directMessageIndex = [];
         const userIndex = [];
-        const selectedUsers = [];
+        const selectedUsers = new Array(this.state.users.length);
         let hintText;
         let hintClass;
 
-        if (this.state.searchText) {
+        if (this.state.users.length < 8 && this.state.searchText) {
             hintText = "You can search users by username";
             hintClass = "hint hint-top";
             this.props.allUsers.forEach((user) => {
-                if (this.state.users.includes(user.id)) {
-                    selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
+                if (this.state.users.indexOf(user.id) !== -1) {
+                    selectedUsers[this.state.users.indexOf(user.id)]=(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
                 }
                 if (user.displayName.toLowerCase().includes(this.state.searchText.toLowerCase())) {
                     if (this.state.users.includes(user.id)) {
@@ -144,17 +144,17 @@ class AddDirectMessageForm extends React.Component {
             hintClass = "hint hint-top";
             this.props.allUsers.forEach((user) => {
 
-                if (this.state.users.includes(user.id)) {
-                    selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
-                } 
+                if (this.state.users.indexOf(user.id) !== -1) {
+                    selectedUsers[this.state.users.indexOf(user.id)]=(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
+                }
             });
         } else {
             hintText = `You can add ${Math.round(8 - this.state.users.length)} more people`
             hintClass = "hint hint-top";
             this.props.allUsers.forEach((user) => {
     
-                if (this.state.users.includes(user.id)) {
-                    selectedUsers.push(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
+                if (this.state.users.indexOf(user.id) !== -1) {
+                    selectedUsers[this.state.users.indexOf(user.id)]=(<li key={user.id}><button onClick={() => this.handleRemoveUser(user.id)}>{user.displayName} <i className="fas fa-times"></i></button></li>);
                     userIndex.push(
                         <li key={user.id}><button className="dummy-button"><i key="icon" className="fas fa-th-large"></i> {user.displayName}</button></li>
                     );
