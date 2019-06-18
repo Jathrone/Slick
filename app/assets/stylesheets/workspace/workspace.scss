@@ -32,6 +32,7 @@ $font-lato: 'Lato', sans-serif;
 }
 
 .workspace-nav-bar {
+  position: relative;
   box-sizing: border-box;
   flex: 0 0 220px;
 
@@ -691,5 +692,77 @@ input.chat-edit-form-submit {
     font-weight: 900;
 
     padding: 8px 0px 0px 20px;
+  }
+}
+
+.workspace-session-modal-child {
+  display: block;
+  position: absolute;
+  top: 52px;
+  left: 16px;
+
+  box-sizing: border-box;
+  width: 300px;
+  border-radius: 4px;
+  border: 1px solid $workspace-border-light-gray;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1); //#TODO look up shadow color
+  background-color: white;
+  z-index: 11;
+
+  color: black;
+
+  .useful-section {
+    padding: 8px 0px;
+
+    .header-section {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 12px 0px;
+      padding: 0px 20px;
+      
+      i {
+        display: flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+  
+        border-radius: 4px;
+        background-color: $slack-accessible-green;
+        font-size: 24px;
+        color: white;
+      }
+  
+      h1 {
+        margin-left: 8px;
+        font-size: 20px;
+        align-self: flex-start;
+      }
+    }
+
+    ul li {
+      line-height: 26px;
+      height: 28px;
+      font-weight: 300;
+      padding: 0px 20px;
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+        background-color: $slack-accessible-blue;
+      }
+    }
+
+    &:not(:last-child):after {
+      content: "";
+      display: block;
+      width: 298px;
+      height: 1px;
+      background-color: $workspace-border-light-gray;
+      position: relative;
+      top: 8px;
+    }
   }
 }
