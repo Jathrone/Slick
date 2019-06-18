@@ -1,7 +1,9 @@
 import React from "react";
 import {closeWorkspaceModal} from "../../actions/workspace_session_modal_actions";
 import {logout} from "../../actions/session_actions";
+import { activateSession } from "../../actions/session_actions";
 import {connect} from "react-redux";
+import { currentUserIdAndWorkspaceNames } from "../../reducers/modal_selectors";
 
 class WorkspaceSessionModal extends React.Component{
     constructor(props) {
@@ -12,6 +14,10 @@ class WorkspaceSessionModal extends React.Component{
     handleLogOut() {
         this.props.logout();
         this.props.closeWorkspaceModal();
+    }
+
+    handleSwitch(userId) {
+        this.props.activateSession(userId);
     }
 
     render() {
@@ -45,6 +51,17 @@ class WorkspaceSessionModal extends React.Component{
                     </div>
                     <div className="useful-section">
                         <ul>
+                            {this.props.otherActiveWorkspaces.map((workspace)=> {
+                                if (workspace.userId !== this.props.currentUser.id) {
+                                    return (
+                                        <li 
+                                        key={workspace.userId}
+                                        onClick={() => this.handleSwitch(workspace.userId)}>
+                                                Switch to <strong>{workspace.workspaceName}</strong>
+                                        </li>
+                                    )
+                                }
+                            })}
                             <li>Sign in to another workspace</li>
                         </ul>
                     </div>
@@ -55,13 +72,14 @@ class WorkspaceSessionModal extends React.Component{
 } 
 
 const mapStateToProps = (state) => ({
-    modalState: state.ui.workspaceSessionModal
+    modalState: state.ui.workspaceSessionModal,
+    otherActiveWorkspaces: currentUserIdAndWorkspaceNames(state)
 });
 
 const mapDispatchToProps = dispatch => ({
     closeWorkspaceModal: () => dispatch(closeWorkspaceModal()),
-    logout: () => dispatch(logout())
-
+    logout: () => dispatch(logout()),
+    activateSession: (userId) => dispatch(activateSession(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkspaceSessionModal);

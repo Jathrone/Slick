@@ -49,6 +49,14 @@ class WorkspaceWrapper extends React.Component {
         // this.props.fetchRelevantDirectMessages();
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.currentUser.id !== this.props.currentUser.id) {
+            this.props.fetchRelevantUsers(this.props.currentUser.workspaceId);
+            this.props.fetchRelevantChannels(this.props.currentUser.workspaceId);
+            this.props.fetchRelevantDirectMessages();
+        }
+    }
+
     render() {
         const { currentUser, channels, createChannel, directMessages, allUsers, createDirectMessage } = this.props
         if (this.state.activeArea === "chat") {
