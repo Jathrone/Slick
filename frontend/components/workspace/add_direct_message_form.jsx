@@ -91,6 +91,7 @@ class AddDirectMessageForm extends React.Component {
 
     render() {
 
+        let placeholderText = "";
         let displayIndex = [];
         const directMessageIndex = [];
         const userIndex = [];
@@ -119,6 +120,7 @@ class AddDirectMessageForm extends React.Component {
             });
             displayIndex = userIndex;
         } else if (this.state.users.length === 0) {
+            placeholderText = "Find or start a conversation"
             hintText = "Recent conversations"
             hintClass = "hint hint-bottom";
             let displayedUsers = [];
@@ -222,7 +224,8 @@ class AddDirectMessageForm extends React.Component {
                                 ref={(ip) => this.searchInput = ip}
                                 type='text'
                                 onChange={this.handleText}
-                                value={this.state.searchText}/>
+                                value={this.state.searchText}
+                                placeholder = {placeholderText}/>
                             </ul>
                             <button
                                 type="submit"
