@@ -71,10 +71,12 @@ class WorkspaceSessionModal extends React.Component{
     }
 } 
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+    return ({
     modalState: state.ui.workspaceSessionModal,
     otherActiveWorkspaces: currentUserIdAndWorkspaceNames(state)
-});
+    })
+};
 
 const mapDispatchToProps = dispatch => ({
     closeWorkspaceModal: () => dispatch(closeWorkspaceModal()),
