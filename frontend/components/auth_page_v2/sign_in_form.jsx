@@ -14,6 +14,14 @@ class SignInForm extends React.Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
+    componentDidMount() {
+        this.props.clearAuthPageUi();
+    }
+
+    componentWillUnmount() {
+        this.props.clearAuthPageUi();
+    }
+
     handleWorkspaceAction(e) {
         e.preventDefault();
         let workspace = {

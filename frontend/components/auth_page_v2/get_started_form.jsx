@@ -3,23 +3,65 @@ import React from "react";
 class GetStartedForm extends React.Component {
     constructor(props) {
         super(props);
+        let email;
+        if (this.props.location.state) {
+            if (this.props.location.state.email !== undefined) {
+                email = this.props.location.state.email;
+            } else {
+                email = "";
+            }
+        } else {
+            email = "";
+        }
         this.state = {
-            email: "",
+            email,
             password: "",
             workspaceName: "",
             workspaceId: ""
         }
         this.handleGetStartedAction = this.handleGetStartedAction.bind(this);
+        this.handleFindWorkspace = this.handleFindWorkspace.bind(this);
         this.handleEmailReadyAction = this.handleEmailReadyAction.bind(this);
         this.handleWorkspaceAction = this.handleWorkspaceAction.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
     componentDidMount() {
+        let getStarted;
+        let findWorkspace;
+        let emailReady;
+        if (this.props.location.state) {
+            if (this.props.location.state.getStarted !== undefined) {
+                getStarted = this.props.location.state.getStarted;
+            } else {
+                getStarted=true;
+            }
+
+            if (this.props.location.state.findWorkspace !== undefined) {
+                findWorkspace = this.props.location.state.findWorkspace;
+            } else {
+                findWorkspace=false;
+            }
+
+            if (this.props.location.state.emailReady !== undefined) {
+                emailReady = this.props.location.state.emailReady;
+            } else {
+                emailReady = false;
+            }
+        } else {
+            getStarted=true;
+            findWorkspace=false;
+            emailReady = false;
+        }
         this.props.receiveAuthPageUi({
-            getStarted: true,
-            emailReady: false
+            findWorkspace,
+            getStarted,
+            emailReady
         })
+    }
+
+    componentWillUnmount() {
+        this.props.clearAuthPageUi();
     }
 
     handleChange(field) {
@@ -28,6 +70,13 @@ class GetStartedForm extends React.Component {
                 [field]: e.currentTarget.value
             })
         )
+    }
+    
+    handleFindWorkspace() {
+        this.props.receiveAuthPageUi({
+            getStarted: false,
+            findWorkspace: true
+        })
     }
 
     handleGetStartedAction() {
@@ -74,7 +123,7 @@ class GetStartedForm extends React.Component {
                     <p>In Slick, everything happens in a workspace. Like a virtual
                         office building, a workspace is where your team can
                         gather in Slick to communicate and get work done.</p>
-                    <div>
+                    <div onClick={this.handleFindWorkspace}>
                         <i className="fas fa-search"></i>
                         <div>
                             <h6>Find your Slick workspace</h6>
@@ -89,6 +138,13 @@ class GetStartedForm extends React.Component {
                             <p>Get your company or organization on Slick.</p>
                         </div>
                     </div>
+                </form>
+            )
+        } else if (this.props.authPageUi.findWorkspace) {
+            return(
+                <form className="auth-form">
+                    <h2>Find your Slick workspace</h2>
+                    <p>Sign up for a workspace from the list of existing public workspaces below</p>
                 </form>
             )
         } else if (!this.props.authPageUi.emailReady) {

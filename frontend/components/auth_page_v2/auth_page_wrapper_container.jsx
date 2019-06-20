@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import LogInModal from "../splash/log_in_modal";
 import { openLogInModal } from "../../actions/log_in_modal_actions";
 import AuthPageWrapper from "./auth_page_wrapper";
-import { receiveAuthPageUi } from "../../actions/auth_page_ui_actions"; 
+import { receiveAuthPageUi, clearAuthPageUi } from "../../actions/auth_page_ui_actions"; 
 import { createWorkspace } from "../../actions/workspaces_actions";
 import { signup, login } from "../../actions/session_actions";
 import { clearSessionErrors } from "../../actions/session_actions";
@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
         </div>
     ),
     receiveAuthPageUi: (payload) => dispatch(receiveAuthPageUi(payload)),
+    clearAuthPageUi: () => dispatch(clearAuthPageUi()),
     createWorkspace: (workspace) => dispatch(createWorkspace(workspace)),
     signup: (user) => dispatch(signup(user)),
     clearSessionErrors: () => dispatch(clearSessionErrors()),

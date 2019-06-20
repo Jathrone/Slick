@@ -1,4 +1,4 @@
-import { RECEIVE_AUTH_PAGE_UI } from "../actions/auth_page_ui_actions";
+import { RECEIVE_AUTH_PAGE_UI, ClEAR_AUTH_PAGE_UI } from "../actions/auth_page_ui_actions";
 import { merge } from "lodash";
 
 const authPageUiReducer = (state = {}, action) => {
@@ -7,6 +7,8 @@ const authPageUiReducer = (state = {}, action) => {
         case RECEIVE_AUTH_PAGE_UI:
             newState = merge({}, state, action.payload );
             return newState;
+        case ClEAR_AUTH_PAGE_UI:
+            return {};
         default:
             return state;
     }

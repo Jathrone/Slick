@@ -5,7 +5,36 @@ import GetStartedForm from "./get_started_form";
 import SignInForm from "./sign_in_form";
 
 const AuthPageWrapper = (props) => {
-    const {authPageUi, receiveAuthPageUi, createWorkspace, signup, clearSessionErrors, fetchWorkspaceByName, login} = props;
+    const {authPageUi, receiveAuthPageUi, clearAuthPageUi, createWorkspace, signup, clearSessionErrors, fetchWorkspaceByName, login} = props;
+
+    let createWorkspaceLink;
+    let findWorkspaceLink;
+    if (Object.keys(authPageUi).length===0) {
+        createWorkspaceLink = <Link to={{
+            pathname: "/get-started",
+            state: {
+                getStarted: false
+            }
+        }}>Create a new workspace</Link>
+
+        findWorkspaceLink = <Link to={{
+            pathname: "/get-started",
+            state: {
+                getStarted: false,
+                findWorkspace: true
+            }
+        }}>Sign up on existing workspace</Link>
+    } else {
+        createWorkspaceLink = <a onClick={() => receiveAuthPageUi({
+            getStarted: false,
+            findWorkspace: false
+        })}>Create a new workspace</a>
+
+        findWorkspaceLink = <a onClick={() => receiveAuthPageUi({
+            getStarted: false,
+            findWorkspace: true
+        })}>Sign up on existing workspce</a>
+    }
 
     return (
         <div id="auth-page">
@@ -20,8 +49,8 @@ const AuthPageWrapper = (props) => {
                         <li>Support</li>
                         {(props.loggedIn) ? null : (
                             <>
-                                <li><Link to="/get-started">Create a new workspace</Link></li>
-                                <li><Link to="/get-started">Sign up on existing workspace</Link></li>
+                                <li>{createWorkspaceLink}</li>
+                                <li>{findWorkspaceLink}</li>
                             </>
                         )}
                     </ul>
@@ -35,6 +64,7 @@ const AuthPageWrapper = (props) => {
                 path="/signin" 
                 render = {(props) => <SignInForm {...props}
                     receiveAuthPageUi={receiveAuthPageUi}
+                    clearAuthPageUi={clearAuthPageUi}
                     authPageUi={authPageUi}
                     workspaceAction={fetchWorkspaceByName}
                     formAction={login}
@@ -43,6 +73,7 @@ const AuthPageWrapper = (props) => {
                 path="/get-started" 
                 render = {(props) => <GetStartedForm {...props} 
                     receiveAuthPageUi={receiveAuthPageUi} 
+                    clearAuthPageUi={clearAuthPageUi}
                     authPageUi={authPageUi}
                     workspaceAction={createWorkspace}
                     formAction={signup}
