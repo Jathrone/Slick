@@ -6,8 +6,6 @@ class WorkspaceActiveArea extends React.Component {
         super(props);
     }
 
-    // #TODO change back to functional component if cleanup doesn't require componentdidupdate
-
     render() {
 
         const reChannels = /channels/;
@@ -15,12 +13,22 @@ class WorkspaceActiveArea extends React.Component {
         let parentType;
         let displayInfo;
         let parentId = parseInt(this.props.match.params.parentId);
+        let returnNull;
+
         if (reChannels.test(this.props.match.url)) {
             parentType = "Channel";
-            displayInfo= "#" + this.props.channels.filter((channel) =>(channel.id === parentId))[0].name;
+            if (this.props.channels.filter((channel) => (channel.id === parentId))[0]) {
+                displayInfo = "#" + this.props.channels.filter((channel) => (channel.id === parentId))[0].name;
+            } else {
+                returnNull=true
+            }
         } else if (reDirectMessages.test(this.props.match.url)) {
             parentType = "DirectMessage";
             displayInfo = this.props.directMessages.filter((directMessage)=> (directMessage.id === parentId))[0].participants.map((participant) => participant ? participant.displayName : "").join(", ")
+        }
+
+        if (returnNull) {
+            return null;
         }
 
         parentType = parentType;
