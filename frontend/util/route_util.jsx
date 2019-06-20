@@ -2,7 +2,13 @@ import React from "react";
 import { withRouter, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-const ReverseAuth = ({ component: Component, path, loggedIn, exact, redirect}) => (
+const ReverseAuth = (props) => {
+    const { component: Component, path, loggedIn, exact, redirect, state } = props;
+    if (props.location.state && props.location.state.deactivateSession) {
+        props.location.state.deactivateSession();
+        props.location.state = {};
+    }
+    return (
     <Route path={path} exact={exact} render={(props) => (
         !loggedIn ? (
             <Component {...props} />
@@ -10,7 +16,8 @@ const ReverseAuth = ({ component: Component, path, loggedIn, exact, redirect}) =
             null
         )
     )}></Route>
-)
+    )
+}
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => (

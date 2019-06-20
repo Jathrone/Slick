@@ -3,6 +3,7 @@ import { fetchWorkspace } from "./workspaces_actions";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
+export const DEACTIVATE_SESSION = "DEACTIVATE_SESSION";
 
 // #TODO consider removing non-current_user logouts for post development
 export const LOGOUT_OTHER_USER = "LOGOUT_OTHER_USER";
@@ -23,6 +24,10 @@ const logoutCurrentUser = () => ({
 const logoutOtherUser = (userId) => ({
     type: LOGOUT_OTHER_USER,
     userId
+})
+
+export const deactivateSession = () => ({
+    type: DEACTIVATE_SESSION
 })
 
 export const clearSessionErrors = () => ({
