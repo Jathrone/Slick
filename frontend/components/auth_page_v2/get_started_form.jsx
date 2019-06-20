@@ -90,6 +90,10 @@ class GetStartedForm extends React.Component {
 
     handleEmailReadyAction(e) {
         e.preventDefault();
+        this.setState({
+            workspaceId: "",
+            workspaceName: ""
+        })
         this.props.receiveAuthPageUi({
             emailReady: true
         })
