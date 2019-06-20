@@ -1,5 +1,5 @@
 import { merge } from "lodash";
-import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, LOGOUT_OTHER_USER } from "../actions/session_actions";
+import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER, LOGOUT_OTHER_USER, DEACTIVATE_SESSION } from "../actions/session_actions";
 
 // stores both currentUserId and an array of allCurrentUsersIds
 // #TODO consider separating into two reducers
@@ -25,6 +25,11 @@ const sessionReducer = (state = defaultState, action) => {
                 // consider removing all duplicate userIds here?
                 newState.allCurrentUsersIds.splice(newState.allCurrentUsersIds.indexOf(userId), 1)
             }
+            return newState;
+        
+        case DEACTIVATE_SESSION:
+            newState = merge({}, state);
+            newState.currentUserId = null;
             return newState;
 
         // #TODO consider removing non-current_user logouts for post development

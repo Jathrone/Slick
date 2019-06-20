@@ -1,14 +1,19 @@
 import React from "react";
 import {closeWorkspaceModal} from "../../actions/workspace_session_modal_actions";
 import {logout} from "../../actions/session_actions";
-import { activateSession } from "../../actions/session_actions";
+import { activateSession, deactivateSession } from "../../actions/session_actions";
 import {connect} from "react-redux";
 import { currentUserIdAndWorkspaceNames } from "../../reducers/modal_selectors";
+import {Redirect} from "react-router";
 
 class WorkspaceSessionModal extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            redirect: false
+        }
         this.handleLogOut = this.handleLogOut.bind(this);
+        this.handleDeactivate =this.handleDeactivate.bind(this);
     }
 
     handleLogOut() {
@@ -20,9 +25,23 @@ class WorkspaceSessionModal extends React.Component{
         this.props.activateSession(userId);
     }
 
+    handleDeactivate() {
+        // this.props.deactivateSession();
+        this.props.closeWorkspaceModal();
+        this.setState({
+            redirect: true
+        })
+    }
+
     render() {
         if (!this.props.modalState) {
             return null;
+        } else if (this.state.redirect) {
+            return (
+                <Redirect to={{
+                    pathname: "/signin",
+                    state: {deactivateSession: this.props.deactivateSession}}}/>
+            )
         }
         return (
             <>
@@ -62,7 +81,7 @@ class WorkspaceSessionModal extends React.Component{
                                     )
                                 }
                             })}
-                            <li>Sign in to another workspace</li>
+                            <li onClick={this.handleDeactivate}>Sign in to another workspace</li>
                         </ul>
                     </div>
                 </div>
@@ -81,7 +100,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
     closeWorkspaceModal: () => dispatch(closeWorkspaceModal()),
     logout: () => dispatch(logout()),
-    activateSession: (userId) => dispatch(activateSession(userId))
+    activateSession: (userId) => dispatch(activateSession(userId)),
+    deactivateSession: ()=> dispatch(deactivateSession())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkspaceSessionModal);
