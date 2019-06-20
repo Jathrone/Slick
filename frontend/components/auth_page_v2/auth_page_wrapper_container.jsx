@@ -7,12 +7,13 @@ import { receiveAuthPageUi, clearAuthPageUi } from "../../actions/auth_page_ui_a
 import { createWorkspace } from "../../actions/workspaces_actions";
 import { signup, login } from "../../actions/session_actions";
 import { clearSessionErrors } from "../../actions/session_actions";
-import { fetchWorkspaceByName } from "../../actions/workspaces_actions";
+import { fetchWorkspaceByName, fetchAllWorkspaces } from "../../actions/workspaces_actions";
 
 const mapStateToProps = (state) => {
     return {
         loggedIn: !(state.session.allCurrentUsersIds.length === 0),
-        authPageUi: state.ui.authPageUi
+        authPageUi: state.ui.authPageUi,
+        allWorkspaces: Object.values(state.entities.workspaces)
     };
 }
 
@@ -30,6 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
     clearSessionErrors: () => dispatch(clearSessionErrors()),
     fetchWorkspaceByName: (workspace) => dispatch(fetchWorkspaceByName(workspace.name)),
     login: (user) => dispatch(login(user)),
+    fetchAllWorkspaces: () => dispatch(fetchAllWorkspaces())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthPageWrapper);

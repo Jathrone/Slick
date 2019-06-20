@@ -24,6 +24,7 @@ class GetStartedForm extends React.Component {
         this.handleEmailReadyAction = this.handleEmailReadyAction.bind(this);
         this.handleWorkspaceAction = this.handleWorkspaceAction.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.handleSelectWorkspace = this.handleSelectWorkspace.bind(this);
     }
 
     componentDidMount() {
@@ -58,6 +59,8 @@ class GetStartedForm extends React.Component {
             getStarted,
             emailReady
         })
+
+        this.props.fetchAllWorkspaces();
     }
 
     componentWillUnmount() {
@@ -114,6 +117,18 @@ class GetStartedForm extends React.Component {
         this.props.formAction(user)
     }
 
+    handleSelectWorkspace({workspaceId, workspaceName}) {
+        this.props.receiveAuthPageUi({
+            emailReady: true,
+            findWorkspace: false,
+            getStarted: false
+        })
+        this.setState({
+            workspaceId,
+            workspaceName
+        })
+    }
+
 
     render() {
         if (this.props.authPageUi.getStarted) {
@@ -123,7 +138,7 @@ class GetStartedForm extends React.Component {
                     <p>In Slick, everything happens in a workspace. Like a virtual
                         office building, a workspace is where your team can
                         gather in Slick to communicate and get work done.</p>
-                    <div onClick={this.handleFindWorkspace}>
+                    <div className="get-started-button" onClick={this.handleFindWorkspace}>
                         <i className="fas fa-search"></i>
                         <div>
                             <h6>Find your Slick workspace</h6>
@@ -131,7 +146,7 @@ class GetStartedForm extends React.Component {
                         </div>
                         {/* #TODO add slideable icon here */}
                     </div>
-                    <div onClick={this.handleGetStartedAction}>
+                    <div className="get-started-button" onClick={this.handleGetStartedAction}>
                         <i className="fas fa-plus"></i>
                         <div>
                             <h6>Create a new workspace</h6>
@@ -145,6 +160,17 @@ class GetStartedForm extends React.Component {
                 <form className="auth-form">
                     <h2>Find your Slick workspace</h2>
                     <p>Sign up for a workspace from the list of existing public workspaces below</p>
+                    <div className="all-available-workspaces">
+                        {this.props.allWorkspaces.map((workspace) => {
+                            return (
+                                <div 
+                                    className="available-workspace" 
+                                    key={workspace.id}
+                                    onClick={() => this.handleSelectWorkspace({workspaceId: workspace.id,
+                                                                workspaceName:workspace.name})}>{workspace.name}</div>
+                            )
+                        })}
+                    </div>
                 </form>
             )
         } else if (!this.props.authPageUi.emailReady) {

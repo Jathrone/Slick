@@ -5,7 +5,7 @@ import GetStartedForm from "./get_started_form";
 import SignInForm from "./sign_in_form";
 
 const AuthPageWrapper = (props) => {
-    const {authPageUi, receiveAuthPageUi, clearAuthPageUi, createWorkspace, signup, clearSessionErrors, fetchWorkspaceByName, login} = props;
+    const {authPageUi, receiveAuthPageUi, clearAuthPageUi, createWorkspace, signup, clearSessionErrors, fetchWorkspaceByName, login, fetchAllWorkspaces, allWorkspaces} = props;
 
     let createWorkspaceLink;
     let findWorkspaceLink;
@@ -77,7 +77,9 @@ const AuthPageWrapper = (props) => {
                     authPageUi={authPageUi}
                     workspaceAction={createWorkspace}
                     formAction={signup}
-                    clearSessionErrors={clearSessionErrors}/>}></Route>
+                    clearSessionErrors={clearSessionErrors}
+                    fetchAllWorkspaces={fetchAllWorkspaces}
+                    allWorkspaces={allWorkspaces}/>}></Route>
         </div>
     )
 }
