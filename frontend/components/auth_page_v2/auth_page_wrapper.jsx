@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
-import WrapperAuthFormGetStartedContainer from './wrapper_auth_form_get_started_container';
-import WrapperAuthFormSignInContainer from "./wrapper_auth_form_sign_in_container";
 import AuthErrorIndexContainer from "./auth_error_index_container";
-// import AvailableWorkspaceListContainer from "./available_workspace_list_container";
+import GetStartedForm from "./get_started_form";
+import SignInForm from "./sign_in_form";
 
 const AuthPageWrapper = (props) => {
+    const {authPageUi, receiveAuthPageUi, createWorkspace, signup, clearSessionErrors, fetchWorkspaceByName, login} = props;
 
     return (
         <div id="auth-page">
@@ -31,8 +31,22 @@ const AuthPageWrapper = (props) => {
                 </nav>
             </header>
             <AuthErrorIndexContainer />
-            <Route path="/signin" component={WrapperAuthFormSignInContainer}></Route>
-            <Route path="/get-started" component={WrapperAuthFormGetStartedContainer}></Route>
+            <Route 
+                path="/signin" 
+                render = {(props) => <SignInForm {...props}
+                    receiveAuthPageUi={receiveAuthPageUi}
+                    authPageUi={authPageUi}
+                    workspaceAction={fetchWorkspaceByName}
+                    formAction={login}
+                    clearSessionErrors={clearSessionErrors} />}></Route>
+            <Route 
+                path="/get-started" 
+                render = {(props) => <GetStartedForm {...props} 
+                    receiveAuthPageUi={receiveAuthPageUi} 
+                    authPageUi={authPageUi}
+                    workspaceAction={createWorkspace}
+                    formAction={signup}
+                    clearSessionErrors={clearSessionErrors}/>}></Route>
         </div>
     )
 }

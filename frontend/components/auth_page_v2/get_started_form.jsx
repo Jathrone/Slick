@@ -1,42 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-class WrapperAuthForm extends React.Component {
+class GetStartedForm extends React.Component {
     constructor(props) {
-        super(props)
-        let getStarted;
-        let emailReady;
-        let email = "";
-        if (this.props.location.state) {
-            if (this.props.location.state.getStarted !== undefined) {
-                getStarted = this.props.location.state.getStarted;
-            } else {
-                getStarted = this.props.getStarted;
-            }
-            if (this.props.location.state.emailReady !== undefined) {
-                emailReady = this.props.location.state.emailReady;
-            } else {
-                emailReady = this.props.emailReady;
-            }
-            if (this.props.location.state.email !== undefined) {
-                email = this.props.location.state.email;
-            }
-        } else {
-            getStarted = this.props.getStarted;
-            emailReady = this.props.emailReady;
-        }
+        super(props);
         this.state = {
-            email: email,
+            email: "",
             password: "",
             workspaceName: "",
-            workspaceId: "",
-            emailReady: emailReady,
-            getStarted: getStarted
+            workspaceId: ""
         }
-        this.handleWorkspaceAction = this.handleWorkspaceAction.bind(this);
-        this.handleEmailReadyAction = this.handleEmailReadyAction.bind(this);
         this.handleGetStartedAction = this.handleGetStartedAction.bind(this);
+        this.handleEmailReadyAction = this.handleEmailReadyAction.bind(this);
+        this.handleWorkspaceAction = this.handleWorkspaceAction.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.receiveAuthPageUi({
+            getStarted: true,
+            emailReady: false
+        })
     }
 
     handleChange(field) {
@@ -47,20 +30,15 @@ class WrapperAuthForm extends React.Component {
         )
     }
 
-    componentDidMount() {
-        this.props.clearSessionErrors();
-    }
-
-
     handleGetStartedAction() {
-        this.setState({
+        this.props.receiveAuthPageUi({
             getStarted: false
         })
     }
 
-    handleEmailReadyAction(e) { 
+    handleEmailReadyAction(e) {
         e.preventDefault();
-        this.setState({
+        this.props.receiveAuthPageUi({
             emailReady: true
         })
     }
@@ -75,6 +53,7 @@ class WrapperAuthForm extends React.Component {
             .then((res) => this.setState({ workspaceId: res.workspace.id }))
     };
 
+
     handleFormSubmit(e) {
         this.props.clearSessionErrors();
         e.preventDefault();
@@ -86,13 +65,14 @@ class WrapperAuthForm extends React.Component {
         this.props.formAction(user)
     }
 
+
     render() {
-        if (this.state.getStarted) {
+        if (this.props.authPageUi.getStarted) {
             return (
                 <form className="auth-form">
                     <h2>Start with a workspace</h2>
-                    <p>In Slick, everything happens in a workspace. Like a virtual 
-                        office building, a workspace is where your team can 
+                    <p>In Slick, everything happens in a workspace. Like a virtual
+                        office building, a workspace is where your team can
                         gather in Slick to communicate and get work done.</p>
                     <div>
                         <i className="fas fa-search"></i>
@@ -111,7 +91,7 @@ class WrapperAuthForm extends React.Component {
                     </div>
                 </form>
             )
-        } else if (!this.state.emailReady) {
+        } else if (!this.props.authPageUi.emailReady) {
             return (
                 <form className="auth-form" onSubmit={this.handleEmailReadyAction}>
                     <h2>Create a new workspace</h2>
@@ -127,56 +107,29 @@ class WrapperAuthForm extends React.Component {
                 </form>
             )
         } else if (!this.state.workspaceId) {
-            const guideMessage = (this.props.submitButtonText === "Sign up") ? <h2 id="wrappable-h2">What's the name of your company or team?</h2> : <h2>Sign in to your workspace</h2>;
-            const findYourWorkspaceLink = (this.props.submitButtonText === "Sign up") ? null : <div id="find-your-workspace-link">Don't know your workspace name? Find your workspace</div>;
-            let footerLink = null;
-            if (this.props.submitButtonText !== "Sign up") {
-                footerLink = <section className="auth-page-bottom-section">
-                    <p>Need to get your group started on Slack?
-                        <Link to={{
-                            pathname: "/get-started",
-                            state: {
-                                getStarted: false
-                            }
-                        }}>Create a new workspace</Link></p>
-                </section>
-            }
+            
             return (
                 <>
                     <form className="auth-form" onSubmit={this.handleWorkspaceAction}>
-                        {guideMessage}
+                        <h2 id="wrappable-h2">What's the name of your company or team?</h2>
                         <h6 className="form-blurb">Enter your workspace's Slick name</h6>
                         <input
                             type="text"
                             value={this.state.workspaceName}
                             placeholder="your-workspace-name"
                             onChange={this.handleChange("workspaceName")} />
-                            
+
                         <input type="submit" value="Continue" />
 
-                        {findYourWorkspaceLink}
+                        <div id="find-your-workspace-link">Don't know your workspace name? Find your workspace</div>
                     </form>
-                    {footerLink}
                 </>
             )
         } else {
-            const guideMessage = (this.props.submitButtonText === "Sign up") ? "Sign up for " : "Sign in to";
-            let footerLink = null;
-            if (this.props.submitButtonText !== "Sign up") {
-                footerLink = <section className="auth-page-bottom-section">
-                    <p>Need to get your group started on Slack?
-                        <Link to={{
-                            pathname: "/get-started",
-                            state: {
-                                getStarted: false
-                            }
-                        }}>Create a new workspace</Link></p>
-                </section>
-            }
             return (
                 <>
                     <form className="auth-form" onSubmit={this.handleFormSubmit}>
-                        <h2>{guideMessage} {this.state.workspaceName}</h2>
+                        <h2>Sign up for {this.state.workspaceName}</h2>
                         <h6 className="form-blurb">Enter your <strong>email address</strong> and <strong>password</strong></h6>
                         <input
                             type="text"
@@ -191,13 +144,12 @@ class WrapperAuthForm extends React.Component {
                             id="password"
                             placeholder="password"
                             onChange={this.handleChange("password")} />
-                        <input type="submit" value={this.props.submitButtonText} />
+                        <input type="submit" value="Sign Up" />
                     </form>
-                    {footerLink}
                 </>
             )
         }
     }
-};
+}
 
-export default WrapperAuthForm;
+export default GetStartedForm;

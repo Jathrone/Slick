@@ -2,7 +2,7 @@ import React from "react";
 import { AuthRoute, ReverseAuthRoute, ReverseAuthRedirectRoute, AuthRedirectRoute } from "../util/route_util";
 import { Switch } from "react-router-dom";
 import SplashContainer from "./splash/splash_container";
-import AuthPageWrapperContainer from "./auth_page/auth_page_wrapper_container";
+import AuthPageWrapperContainer from "./auth_page_v2/auth_page_wrapper_container";
 import WorkspaceWrapperContainer from "./workspace/workspace_wrapper_container";
 
 const App = () => {
