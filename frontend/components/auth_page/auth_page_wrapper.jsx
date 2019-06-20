@@ -33,16 +33,6 @@ const AuthPageWrapper = (props) => {
             <AuthErrorIndexContainer />
             <Route path="/signin" component={WrapperAuthFormSignInContainer}></Route>
             <Route path="/get-started" component={WrapperAuthFormGetStartedContainer}></Route>
-            {/* <AvailableWorkspaceListContainer /> */}
-            <section className="auth-page-bottom-section">
-                    <p>Need to get your group started on Slack? 
-                        <Link to={{
-                            pathname: "/get-started",
-                            state: {
-                                getStarted: false
-                            }
-                        }}>Create a new workspace</Link></p>
-            </section>
         </div>
     )
 }

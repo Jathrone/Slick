@@ -39,6 +39,16 @@ const ReverseAuthRedirect = ({path, loggedIn}) => {
     )
 };
 
+const AuthRedirect = ({ path, loggedIn }) => {
+    return (
+        loggedIn ? (
+            <Redirect to={path} />
+        ) : (
+                null
+            )
+    )
+};
+
 const mapStateToProps = state => {
     return {loggedIn: Boolean(state.session.currentUserId)}
 }
@@ -46,3 +56,4 @@ const mapStateToProps = state => {
 export const ReverseAuthRoute = withRouter(connect(mapStateToProps)(ReverseAuth));
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
 export const ReverseAuthRedirectRoute = withRouter(connect(mapStateToProps)(ReverseAuthRedirect));
+export const AuthRedirectRoute = withRouter(connect(mapStateToProps)(AuthRedirect));

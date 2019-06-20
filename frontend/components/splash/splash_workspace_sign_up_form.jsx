@@ -25,7 +25,8 @@ class SplashWorkspaceSignUpForm extends React.Component {
                 pathname: "/get-started",
                 state: {
                     email: this.state.email,
-                    emailReady: true
+                    emailReady: true,
+                    getStarted: false
                 }}}/>
         }
         return (
