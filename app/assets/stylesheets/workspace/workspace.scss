@@ -1,3 +1,4 @@
+$slack-aubergine-dark: #3b103c;
 $slack-aubergine: #4A154B;
 $slack-aubergine-null: #611F69;
 $slack-aubergine-active: #7C3085;
@@ -483,7 +484,7 @@ input.chat-edit-form-submit {
 
 .channels-nav-bar, .direct-messages-nav-bar {
   li:hover {
-    background-color: #3b103c;
+    background-color: $slack-aubergine-dark;
   }
 
 }
@@ -567,18 +568,28 @@ input.chat-edit-form-submit {
 
 
 .current-session-info {
-  margin: 10px; 
+  padding: 10px; 
+  cursor: pointer;
 
   .current-workspace-name {
     font-size: 18px;
   }
 
   .current-user-name {
+    margin-top: 4px;
     font-size: 14px;
     color: rgb(197,183,198);
 
     i {
       font-size: 10px;
+    }
+  }
+
+  &:hover {
+    background-color: $slack-aubergine-dark;
+
+    .current-user-name {
+      color: white;
     }
   }
 }
