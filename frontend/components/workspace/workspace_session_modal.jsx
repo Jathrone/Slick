@@ -22,6 +22,7 @@ class WorkspaceSessionModal extends React.Component{
     }
 
     handleSwitch(userId) {
+        this.props.closeWorkspaceModal();
         this.props.activateSession(userId);
     }
 
