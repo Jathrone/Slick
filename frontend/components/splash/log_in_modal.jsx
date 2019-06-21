@@ -23,7 +23,8 @@ const LogInModal = ({ modalState, closeLogInModal, authPageUi, receiveAuthPageUi
             closeLogInModal();
             receiveAuthPageUi({
                 getStarted: true,
-                findWorkspace: false
+                findWorkspace: false,
+                emailReady: false
             });
         }}><i className="fab fa-slack"></i>Create Workspace</a>
     }
