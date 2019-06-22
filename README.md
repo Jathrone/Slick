@@ -1,26 +1,18 @@
-# README
+# Welcome to Slick!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Slick is a collaboration hub that fosters constructive communication and improves workflow for your team. 
 
-Things you may want to cover:
+### [Live Demo](https://slick-apps.herokuapp.com)
 
-* Ruby version
+### Features
 
-* System dependencies
++ CRUD functionalities for Workspaces, Channels, Direct Messages, and Messages. Users will communicate more effectively by targeting the right audience. 
++ Live message updates to help you stay up to speed.
++ Search-enabled direct message creation to help you find the users in your workspace faster.
 
-* Configuration
+### Technologies
+Slick is a single-page slack clone utilizing PostgreSQL, Ruby on Rails, and React.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# Slick
-Slack clone-- "Searchable Log of Infinite Conversation and Knowledge"
+Other technologies used:
++ Action Cable (Websockets) was utilized to implement the messaging service. 
++ jQuery allowed for API calls for communication between frontend and backend.
