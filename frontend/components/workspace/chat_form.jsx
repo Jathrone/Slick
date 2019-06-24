@@ -41,8 +41,6 @@ class ChatForm extends React.Component {
             e.target.style.height = "1px";
             e.target.style.height = `${Math.min(e.target.scrollHeight, 0.5 * this.props.refMainChatSection.scrollHeight)}px`
         }
-        console.log({ scrollHeight: e.target.scrollHeight,
-            "style.height": e.target.style.height})
     }
 
     render() {
