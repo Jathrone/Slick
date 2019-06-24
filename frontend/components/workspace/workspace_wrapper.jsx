@@ -83,6 +83,7 @@ class WorkspaceWrapper extends React.Component {
         } else if (this.state.activeArea === "addChannel") {
             return (
                 <AddChannelForm 
+                    allUsers={allUsers}
                     createChannel={({ name, topic, purpose }) => createChannel(name, currentUser.workspaceId, topic, purpose)}
                     handleResetActiveArea={this.handleResetActiveArea}
                     handleRedirect={this.handleRedirect}/>

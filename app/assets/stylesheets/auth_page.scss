@@ -66,6 +66,10 @@ $slack-red: #E01E5A;
     padding: 6px;
     margin-right: 8px;
     border-radius: 4px;
+
+    a {
+        color: inherit;
+    }
 }
 
 .user-resources-list li:hover{

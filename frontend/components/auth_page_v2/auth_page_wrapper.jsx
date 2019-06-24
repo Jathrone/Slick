@@ -44,9 +44,11 @@ const AuthPageWrapper = (props) => {
                 </div>
                 <nav className="auth-page-nav">
                     <ul className="user-resources-list">
-                        <li>Product</li>
+                        <li><a href="https://github.com/Jathrone/Slick">Github</a></li>
+                        <li><a href="https://www.linkedin.com/in/yucheng-jason-li/">LinkedIn</a></li>
+                        {/* <li>Product</li>
                         <li>Pricing</li>
-                        <li>Support</li>
+                        <li>Support</li> */}
                         {(props.loggedIn) ? null : (
                             <>
                                 <li>{createWorkspaceLink}</li>

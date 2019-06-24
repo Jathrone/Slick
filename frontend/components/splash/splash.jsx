@@ -31,11 +31,14 @@ class Splash extends React.Component {
                     </div>
                     <nav className="splash-nav">
                         <ul className="client-resources-list">
-                            <li>Why Slick?</li>
+                            <li><a href="https://github.com/Jathrone/Slick">Github</a></li>
+                            <li><a href="https://www.linkedin.com/in/yucheng-jason-li/">LinkedIn</a></li>
+
+                            {/* <li>Why Slick?</li>
                             <li>Solutions</li>
                             <li>Resources</li>
                             <li>Enterprise</li>
-                            <li>Pricing</li>
+                            <li>Pricing</li> */}
                         </ul>
                         {navbar}
                     </nav>
