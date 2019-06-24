@@ -16,3 +16,8 @@ Slick is a single-page slack clone utilizing PostgreSQL, Ruby on Rails, and Reac
 Other technologies used:
 + Action Cable (Websockets) was utilized to implement the messaging service. 
 + jQuery allowed for API calls for communication between frontend and backend.
+
+### Screenshots
+
+![Create Workspace](https://github.com/schen13/TaskTracker/blob/master/docs/wireframe1.png)
+![Messages](https://github.com/Jathrone/Slick/blob/master/app/assets/images/Screen%20Shot%202019-06-24%20at%207.20.51%20AM.png)
