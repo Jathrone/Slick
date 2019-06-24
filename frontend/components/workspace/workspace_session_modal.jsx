@@ -56,8 +56,8 @@ class WorkspaceSessionModal extends React.Component{
                             <h1>{this.props.currentUser.displayName}</h1>
                         </div>
                         <ul>
-                            <li>Set yourself to away</li>
-                            <li>{"Help & feedback"}</li>
+                            {/* <li>Set yourself to away</li> */}
+                            <li><a href="https://github.com/Jathrone/Slick/issues">{"Help & feedback"}</a></li>
                         </ul>
                     </div>
                     <div className="useful-section">
