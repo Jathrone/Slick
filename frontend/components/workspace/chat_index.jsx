@@ -40,14 +40,10 @@ class ChatIndex extends React.Component {
                     </TimeBucket>)
                 }
                 timeBucketContent = []
-                // #TODO allow for more native human process of dates (so-many hours ago, today, yesterday)
             }
             if (this.state.messageUnderEdit === message.id) {
                 timeBucketContent.push(<ChatItemEditForm message={message} updateMessage={(body)=>this.props.updateMessage(message.id, body)} clearMessageUnderEdit={this.clearMessageUnderEdit}/>)
             }
-            // else if (message has replies) {
-            // #TODO thread messages 
-            // } 
             else if (message.senderId !== lastSenderId) {
                 timeBucketContent.push(<ChatItemContainer placeMessageUnderEdit={this.placeMessageUnderEdit} deleteMessage={() => this.props.deleteMessage(message.id)} key={message.id} hasMessageHeader={true} message={message} />)
             } else if (!lastTimestamp || (messageTimestamp - lastTimestamp) > 1800000) {
@@ -67,9 +63,7 @@ class ChatIndex extends React.Component {
 
         return (
             <div className="workspace-main-chat-list">
-                {/* <div className="workspace-main-chat-index-whiteout-left"></div> */}
                 {chatIndexDisplay}
-                {/* <div className="workspace-main-chat-index-whiteout-right"></div> */}
             </div>
         )
 
