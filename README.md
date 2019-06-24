@@ -19,5 +19,5 @@ Other technologies used:
 
 ### Screenshots
 
-![Create Workspace](https://github.com/schen13/TaskTracker/blob/master/docs/wireframe1.png)
+![Create Workspace](https://github.com/Jathrone/Slick/blob/master/app/assets/images/Screen%20Shot%202019-06-24%20at%207.26.43%20AM.png)
 ![Messages](https://github.com/Jathrone/Slick/blob/master/app/assets/images/Screen%20Shot%202019-06-24%20at%207.20.51%20AM.png)
