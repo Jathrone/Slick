@@ -49,6 +49,20 @@ class WorkspaceWrapper extends React.Component {
         // this.props.fetchRelevantDirectMessages();
     }
 
+    componentWillUpdate(nextProps) {
+        if (nextProps.currentUser.id !== this.props.currentUser.id) {
+            this.props.history.push("/");
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.currentUser.id !== this.props.currentUser.id) {
+            this.props.fetchRelevantUsers(this.props.currentUser.workspaceId);
+            this.props.fetchRelevantChannels(this.props.currentUser.workspaceId);
+            this.props.fetchRelevantDirectMessages();
+        }
+    }
+
     render() {
         const { currentUser, channels, createChannel, directMessages, allUsers, createDirectMessage } = this.props
         if (this.state.activeArea === "chat") {
@@ -69,6 +83,7 @@ class WorkspaceWrapper extends React.Component {
         } else if (this.state.activeArea === "addChannel") {
             return (
                 <AddChannelForm 
+                    allUsers={allUsers}
                     createChannel={({ name, topic, purpose }) => createChannel(name, currentUser.workspaceId, topic, purpose)}
                     handleResetActiveArea={this.handleResetActiveArea}
                     handleRedirect={this.handleRedirect}/>

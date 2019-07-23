@@ -13,10 +13,15 @@
 
 export const currentUserIdAndWorkspaceNames = (state) => {
     let mapped_slice = [];
+    if (Object.keys(state.entities.workspaces).length === 0) {
+        return mapped_slice;
+    }
     state.session.allCurrentUsersIds.forEach(userId => {
         let workspaceId = state.entities.users[userId].workspaceId;
-        let workspaceName = state.entities.workspaces[workspaceId].name;
-        mapped_slice.push({userId, workspaceName});
+        if (state.entities.workspaces[workspaceId]){
+            let workspaceName = state.entities.workspaces[workspaceId].name;
+            mapped_slice.push({userId, workspaceName});
+        }
     })
     return mapped_slice;
 }

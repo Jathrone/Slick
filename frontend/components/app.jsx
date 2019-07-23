@@ -1,8 +1,8 @@
 import React from "react";
-import { AuthRoute, ReverseAuthRoute, ReverseAuthRedirectRoute } from "../util/route_util";
+import { AuthRoute, ReverseAuthRoute, ReverseAuthRedirectRoute, AuthRedirectRoute } from "../util/route_util";
 import { Switch } from "react-router-dom";
 import SplashContainer from "./splash/splash_container";
-import AuthPageWrapperContainer from "./auth_page/auth_page_wrapper_container";
+import AuthPageWrapperContainer from "./auth_page_v2/auth_page_wrapper_container";
 import WorkspaceWrapperContainer from "./workspace/workspace_wrapper_container";
 
 const App = () => {
@@ -14,7 +14,11 @@ const App = () => {
             {/* #TODO insert logic for automatic log in of users if user specified the correct route here */}
             <ReverseAuthRedirectRoute path="/"/>
         </Switch>
-        <AuthRoute path="/" component={WorkspaceWrapperContainer}></AuthRoute>
+        <Switch>
+            <AuthRoute path={["/direct_messages", "/channels"]} component={WorkspaceWrapperContainer}></AuthRoute>
+            <AuthRoute exact path="/" component={WorkspaceWrapperContainer}></AuthRoute>
+            <AuthRedirectRoute path="/" />
+        </Switch>
     </>
     );
 }

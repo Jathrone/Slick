@@ -7,18 +7,6 @@ import * as workspaceActions from "./actions/workspaces_actions";
 
 
 document.addEventListener("DOMContentLoaded", ()=> {
-    // testing start
-    window.createWorkspace = workspaceActions.createWorkspace;
-    window.fetchWorkspace = workspaceActions.fetchWorkspace;
-    window.fetchWorkspaceByName = workspaceActions.fetchWorkspaceByName;
-    window.signup = sessionActions.signup;
-    window.login = sessionActions.login;
-    window.logout = sessionActions.logout;
-    window.otherLogout = sessionActions.otherLogout;
-    window.activateSession = sessionActions.activateSession;
-    // testing end
-
-
     // here we load both currentUser and allCurrentUsers into state
     let store;
     let preloadedState = {};
@@ -44,9 +32,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
         delete window.allActiveWorkspaces;
     }
     store = configureStore(preloadedState);
-
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store} />, root);
 })

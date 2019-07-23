@@ -3,12 +3,18 @@ import * as workspacesApiUtil from "../util/workspaces_api_util";
 import { receiveSessionErrors } from "./session_actions";
 
 export const RECEIVE_WORKSPACE = "RECEIVE_WORKSPACE";
+export const RECEIVE_WORKSPACES = "RECEIVE_WORKSPACES";
 
 
 const receiveWorkspace = (workspace) => ({
     type: RECEIVE_WORKSPACE,
     workspace
 });
+
+const receiveWorkspaces = (workspaces) => ({
+    type: RECEIVE_WORKSPACES,
+    workspaces
+})
 
 export const createWorkspace = (workspace) => (dispatch) => (
     workspacesApiUtil.createWorkspace(workspace)
@@ -29,4 +35,9 @@ export const fetchWorkspaceByName = (workspaceName) => (dispatch) => (
     workspacesApiUtil.fetchWorkspaceByName(workspaceName)
         .then(res => dispatch(receiveWorkspace(res)),
         err => dispatch(receiveSessionErrors(err)))
+)
+
+export const fetchAllWorkspaces = () => (dispatch) => (
+    workspacesApiUtil.fetchAllWorkspaces()
+        .then(res => dispatch(receiveWorkspaces(res)))
 )
