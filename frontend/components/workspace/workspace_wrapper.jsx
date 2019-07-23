@@ -46,7 +46,8 @@ class WorkspaceWrapper extends React.Component {
         this.props.fetchRelevantUsers(this.props.currentUser.workspaceId);
         this.props.fetchRelevantChannels(this.props.currentUser.workspaceId);
         this.props.fetchRelevantDirectMessages();
-        // this.props.fetchRelevantDirectMessages();
+
+        this.props.history.push("/");
     }
 
     componentWillUpdate(nextProps) {
