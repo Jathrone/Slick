@@ -16,8 +16,8 @@ const App = () => {
         </Switch>
         <Switch>
             <AuthRoute path={["/direct_messages", "/channels"]} component={WorkspaceWrapperContainer}></AuthRoute>
-            <AuthRoute exact path="/" component={WorkspaceWrapperContainer}></AuthRoute>
-            <AuthRedirectRoute path="/" />
+            <AuthRoute path="/" component={WorkspaceWrapperContainer}></AuthRoute>
+            {/* <AuthRedirectRoute path="/" /> */}
         </Switch>
     </>
     );

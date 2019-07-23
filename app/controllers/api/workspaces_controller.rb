@@ -3,7 +3,8 @@ class Api::WorkspacesController < ApplicationController
     def create
         @workspace = Workspace.new(workspace_params)
         if @workspace.save
-            #TODO render something else here?
+            general = Channel.create({name:"general", workspace_id: @workspace.id})
+            announcements = Channel.create({name:"announcements", workspace_id: @workspace.id})
             render :show, status: 200
         else 
             render json: @workspace.errors.full_messages, status: 404
