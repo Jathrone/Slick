@@ -67,7 +67,8 @@ class WorkspaceWrapper extends React.Component {
         const { currentUser, channels, createChannel, directMessages, allUsers, createDirectMessage } = this.props;
         const redirectComponent = []
         if (channels.length > 0) {
-            redirectComponent.push(<Redirect key={channels[0].id} to={`/channels/${channels[0].id}`}/>)
+            redirectComponent.push(<Redirect exact path={"/"} key={channels[0].id} to={`/channels/${channels[0].id}`}/>);
+            redirectComponent.push(< Redirect to = { "/channels/page-not-found"} />);
         }
         if (this.state.activeArea === "chat") {
             return (

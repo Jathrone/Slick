@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", ()=> {
         delete window.allCurrentUsers;
         delete window.allActiveWorkspaces;
     }
+
+    document.getElementById("initial-session-script").remove();
+    
     store = configureStore(preloadedState);
     const root = document.getElementById("root");
     ReactDOM.render(<Root store={store} />, root);
