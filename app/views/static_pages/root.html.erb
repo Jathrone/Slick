@@ -1,6 +1,6 @@
 <% if all_current_users.length > 0 %>
     <% all_active_workspaces = all_current_users.map {|user| user.workspace} %>
-    <script type="text/javascript">
+    <script id="initial-session-script" type="text/javascript">
         window.allCurrentUsers = <%= render(
             "api/users/index.json.jbuilder",
             users: all_current_users

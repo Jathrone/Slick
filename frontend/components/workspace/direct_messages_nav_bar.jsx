@@ -5,7 +5,7 @@ const DirectMessagesNavBar = ({directMessages, handleAddDirectMessage}) => {
     const directMessagesIndex =[];
     directMessages.forEach((directMessage) => {
         let displayText = directMessage.participants.map((participant)=> participant ? participant.displayName : "").join(",")
-        displayText = ((displayText.length < 20) ? displayText : displayText.slice(0, 15) + "...")
+        displayText = ((displayText.length < 20) ? displayText : displayText.slice(0, 17) + "...")
         directMessagesIndex.push(
             <li key={directMessage.id}><Link to={`/direct_messages/${directMessage.id}`}><i className="far fa-circle"></i> {displayText}</Link></li>
         )

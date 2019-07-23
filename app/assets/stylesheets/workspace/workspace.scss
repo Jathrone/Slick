@@ -45,6 +45,79 @@ $font-lato: 'Lato', sans-serif;
   color: rgb(197,183,198);
 }
 
+.workspace-active-area-glitch {
+
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  max-width: calc(100% - 220px);
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+
+  #glitch-container {
+    box-sizing: border-box;
+    flex: 1 1 auto;
+
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    
+    #glitch-warning {
+      position: absolute;
+      top: 100px;
+      left: calc(50% - 230px);
+
+      width: 460px;
+      height: 220px;
+      box-sizing: border-box;
+      background: rgba(255,255,255,0.9);
+      border-radius: 4px;
+      border: 1px solid $workspace-border-light-gray;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      
+      font-family: $font-lato;
+      font-weight: 300;
+
+      #glitch-header {
+        margin: 20px 0px 24px 0px;
+        font-size: 36px;
+
+        &:before {
+          color: red;
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+          content: "\f071"; 
+        }
+      }
+
+      .description {
+        padding: 0px 36px;
+
+        line-height: 24px;
+        letter-spacing: 1px;
+
+        align-self: flex-start;
+
+        a {
+          text-decoration: none;
+          color: $slack-accessible-blue;
+        }
+      }
+    }
+
+
+    img {
+      max-height: 100%;
+    }
+  }
+}
+
 .workspace-active-area {
   box-sizing: border-box;
   flex: 1 1 auto;
@@ -370,7 +443,10 @@ $font-lato: 'Lato', sans-serif;
 }
 
 .chat-item-modal-child {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: -24px;
   right: 50px;
@@ -383,11 +459,12 @@ $font-lato: 'Lato', sans-serif;
   background-color: white;
   z-index: 11;
 
-  padding: 30px 0px;
+  padding: 10px 0px;
 }
 
 .chat-item-actions-list {
   list-style: none;
+  width: 297px;
 
   &:before, &:after {
     content: "";
@@ -478,7 +555,7 @@ input.chat-edit-form-submit {
 }
 
 .channels-nav-bar, .direct-messages-nav-bar {
-  margin: 100px 0px 0px 0px
+  margin: 60px 0px 0px 0px
 
 }
 

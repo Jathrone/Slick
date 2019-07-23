@@ -124,7 +124,8 @@ class AddDirectMessageForm extends React.Component {
             hintText = "Recent conversations"
             hintClass = "hint hint-bottom";
             let displayedUsers = [];
-            const sortedDirectMessages = this.props.directMessages.sort(function compare(a, b) {
+            const directMessagesCopy = this.props.directMessages.slice();
+            const sortedDirectMessages = directMessagesCopy.sort(function compare(a, b) {
                 const dateA = new Date(a.updatedAt);
                 const dateB = new Date(b.updatedAt);
                 return dateB - dateA;

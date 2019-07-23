@@ -3,7 +3,7 @@ import WorkspaceNavBar from "./workspace_nav_bar_container";
 import WorkspaceActiveArea from "./workspace_active_area";
 import AddChannelForm from "./add_channel_form";
 import AddDirectMessageForm from "./add_direct_message_form";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 // #TODO should the path be direct-messages or direct_messages?
 class WorkspaceWrapper extends React.Component {
@@ -46,7 +46,8 @@ class WorkspaceWrapper extends React.Component {
         this.props.fetchRelevantUsers(this.props.currentUser.workspaceId);
         this.props.fetchRelevantChannels(this.props.currentUser.workspaceId);
         this.props.fetchRelevantDirectMessages();
-        // this.props.fetchRelevantDirectMessages();
+
+        this.props.history.push("/");
     }
 
     componentWillUpdate(nextProps) {
@@ -64,7 +65,12 @@ class WorkspaceWrapper extends React.Component {
     }
 
     render() {
-        const { currentUser, channels, createChannel, directMessages, allUsers, createDirectMessage } = this.props
+        const { currentUser, channels, createChannel, directMessages, allUsers, createDirectMessage } = this.props;
+        const redirectComponent = []
+        if (channels.length > 0) {
+            redirectComponent.push(<Redirect exact path={"/"} key={channels[0].id} to={`/channels/${channels[0].id}`}/>);
+            redirectComponent.push(< Redirect to = { "/channels/page-not-found"} />);
+        }
         if (this.state.activeArea === "chat") {
             return (
                 <div className="workspace-page">
@@ -74,10 +80,13 @@ class WorkspaceWrapper extends React.Component {
                         handleAddChannel={this.handleAddChannel} 
                         directMessages={directMessages}
                         handleAddDirectMessage={this.handleAddDirectMessage}/>
-                    <Route 
-                        path={["/channels/:parentId", "/direct_messages/:parentId"]} 
-                        render={(props) => <WorkspaceActiveArea {...props} currentUser={currentUser} channels={channels} directMessages={directMessages}/>}
-                    /> 
+                    <Switch>
+                        <Route 
+                            path={["/channels/:parentId", "/direct_messages/:parentId"]} 
+                            render={(props) => <WorkspaceActiveArea {...props} currentUser={currentUser} channels={channels} directMessages={directMessages}/>}
+                        /> 
+                        {redirectComponent}
+                    </Switch>
                 </div>
             )
         } else if (this.state.activeArea === "addChannel") {
