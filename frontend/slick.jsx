@@ -31,7 +31,10 @@ document.addEventListener("DOMContentLoaded", ()=> {
         delete window.allActiveWorkspaces;
     }
 
-    document.getElementById("initial-session-script").remove();
+    const scriptEl = document.getElementById("initial-session-script");
+    if (scriptEl) {
+        scriptEl.remove();
+    }
     
     store = configureStore(preloadedState);
     const root = document.getElementById("root");
