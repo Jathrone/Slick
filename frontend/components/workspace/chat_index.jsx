@@ -42,7 +42,7 @@ class ChatIndex extends React.Component {
                 timeBucketContent = []
             }
             if (this.state.messageUnderEdit === message.id) {
-                timeBucketContent.push(<ChatItemEditForm message={message} updateMessage={(body)=>this.props.updateMessage(message.id, body)} clearMessageUnderEdit={this.clearMessageUnderEdit}/>)
+                timeBucketContent.push(<ChatItemEditForm key={message.id} message={message} updateMessage={(body)=>this.props.updateMessage(message.id, body)} clearMessageUnderEdit={this.clearMessageUnderEdit}/>)
             }
             else if (message.senderId !== lastSenderId) {
                 timeBucketContent.push(<ChatItemContainer placeMessageUnderEdit={this.placeMessageUnderEdit} deleteMessage={() => this.props.deleteMessage(message.id)} key={message.id} hasMessageHeader={true} message={message} />)

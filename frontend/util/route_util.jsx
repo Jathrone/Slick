@@ -8,6 +8,11 @@ const ReverseAuth = (props) => {
         props.location.state.deactivateSession();
         props.location.state = {};
     }
+
+    if (!loggedIn) {
+        const bodyEl = document.getElementsByTagName("BODY")[0]
+        bodyEl.setAttribute("style", "overflow: auto;");
+    }
     return (
     <Route path={path} exact={exact} render={(props) => (
         !loggedIn ? (
@@ -19,17 +24,29 @@ const ReverseAuth = (props) => {
     )
 }
 
-const Auth = ({ component: Component, path, loggedIn, exact }) => (
-    <Route path={path} exact={exact} render={(props) => (
-        loggedIn ? (
-            <Component {...props} />
-        ) : (
-            null
-            )
-    )}></Route>
-)
+const Auth = ({ component: Component, path, loggedIn, exact }) => {
+
+    if (loggedIn) {
+        const bodyEl = document.getElementsByTagName("BODY")[0]
+        bodyEl.setAttribute("style", "overflow: hidden;");
+    }
+    return (
+        <Route path={path} exact={exact} render={(props) => (
+            loggedIn ? (
+                <Component {...props} />
+            ) : (
+                null
+                )
+        )}></Route>
+    )
+}
+
 
 const ReverseAuthRedirect = ({path, loggedIn}) => {
+    if (!loggedIn) {
+        const bodyEl = document.getElementsByTagName("BODY")[0]
+        bodyEl.setAttribute("style", "overflow: auto;");
+    }
     return (
         !loggedIn ? (
             <Redirect to={path}/>
@@ -40,6 +57,11 @@ const ReverseAuthRedirect = ({path, loggedIn}) => {
 };
 
 const AuthRedirect = ({ path, loggedIn }) => {
+
+    if (loggedIn) {
+        const bodyEl = document.getElementsByTagName("BODY")[0]
+        bodyEl.setAttribute("style", "overflow: hidden;");
+    }
     return (
         loggedIn ? (
             <Redirect to={path} />
